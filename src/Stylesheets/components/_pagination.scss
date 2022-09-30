@@ -1,0 +1,24 @@
+.pagination {
+  display: flex;
+  column-gap: var(--s1);
+}
+
+.pagination__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  color: var(--secondary);
+  font-size: var(--fs3);
+}
+
+.pagination__btn:disabled {
+  color: #ccc;
+}
+
+.pagination__btn.active {
+  background-color: var(--blue);
+  color: #fff;
+}

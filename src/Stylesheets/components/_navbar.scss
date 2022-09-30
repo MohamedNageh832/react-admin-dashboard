@@ -1,0 +1,39 @@
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--s2) var(--s3);
+  background-color: #fff;
+}
+
+.navbar__logo {
+  width: 100px;
+  height: 40px;
+  vertical-align: bottom;
+}
+
+.navbar__user-options {
+  position: absolute;
+  top: 100%;
+  left: 8px;
+  box-shadow: var(--box-shadow1);
+  width: 240px;
+  padding: var(--s2);
+  border-radius: var(--mainBR);
+  background-color: #fff;
+}
+
+.user-option:nth-child(2) {
+  padding-bottom: var(--s1);
+  border-bottom: 1px solid var(--lineColor);
+}
+
+.user-option__title {
+  color: var(--secondary);
+  font-size: var(--fs1);
+}
+
+.user-option__info,
+.user-option__logout-btn {
+  font-size: var(--fs2);
+}

@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./Auth/auth";
+import RequireAuth from "./Auth/requireAuth";
+import Homepage from "./Pages/Homepage";
+import LoginPage from "./Pages/login/Login";
+import NotFound from "./Pages/404page/NotFound";
+import DataEntryPages from "./Pages/data-entry/DataEntryPages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/"
+            element={<RequireAuth allowedRoles={["dataEntry", "admin"]} />}
+          >
+            <Route path="/authtest" element={<Homepage />} />
+          </Route>
+
+          <Route path="/staff/dataEntry/*" element={<DataEntryPages />} />
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthProvider>
+    </Router>
   );
 }
 

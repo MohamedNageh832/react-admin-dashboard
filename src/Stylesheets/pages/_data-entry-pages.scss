@@ -1,0 +1,13 @@
+.content-holder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--s3);
+  width: calc(100% - 300px);
+  padding: var(--s3);
+}

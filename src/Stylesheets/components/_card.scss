@@ -1,0 +1,35 @@
+.card {
+  min-width: 300px;
+  padding: var(--s2);
+  border-radius: var(--mainBR);
+  background-color: #fff;
+}
+
+.card--grey {
+  background-color: var(--grey-100);
+  cursor: pointer;
+}
+
+.card--shadow {
+  box-shadow: 1px 1px 10px #ededed;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--s1);
+}
+
+.card__title--sec {
+  font-size: var(--fs2);
+  color: var(--secondary);
+}
+
+.card__content {
+  font-size: var(--fs3);
+}
+
+.card__data {
+  font-size: var(--fs4);
+  line-height: 20px;
+}

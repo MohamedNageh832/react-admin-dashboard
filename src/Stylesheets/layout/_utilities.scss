@@ -1,0 +1,129 @@
+.pos-relative {
+  position: relative;
+}
+
+.pos-absolute {
+  position: absolute;
+}
+
+.pos-fixed {
+  position: fixed;
+}
+
+.pos-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.heading-2 {
+  font-size: var(--fs5);
+  font-weight: normal;
+}
+
+.h3 {
+  font-size: var(--fs4);
+}
+
+// transform to fsize-4
+.h4 {
+  font-size: var(--fs3);
+}
+
+.h5 {
+  font-size: var(--fs2);
+  font-weight: bold;
+}
+
+.fsize-3 {
+  font-size: var(--fs3);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.link {
+  border: none;
+  background-color: inherit;
+  color: var(--blue);
+  font-size: var(--fs2);
+}
+
+.link--grey {
+  color: var(--secondary);
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-sec {
+  font-size: var(--fs2);
+  color: var(--secondary);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+@for $i from 1 through 5 {
+  .flex-grow-#{$i} {
+    flex-grow: $i;
+  }
+}
+
+@for $i from 1 through 5 {
+  .gap-#{$i} {
+    gap: var(--s#{$i});
+  }
+
+  .p-#{$i} {
+    padding: var(--s#{$i});
+  }
+
+  .pt-#{$i} {
+    padding-top: var(--s#{$i});
+  }
+
+  .mt-#{$i} {
+    margin-top: var(--s#{$i});
+  }
+
+  .mr-#{$i} {
+    margin-right: var(--s#{$i});
+  }
+
+  .mb-#{$i} {
+    margin-bottom: var(--s#{$i});
+  }
+}
+
+.w-100 {
+  width: 100%;
+}

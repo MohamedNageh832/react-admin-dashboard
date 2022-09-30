@@ -1,0 +1,33 @@
+.multi-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding: var(--s2);
+  border: 1px solid var(--borderColor);
+  border-radius: var(--mainBR);
+}
+
+.multi-select__input {
+  flex: 1 1;
+  padding: 0;
+  border: none;
+  min-width: 90px;
+}
+
+.multi-select__input:focus {
+  box-shadow: none;
+}
+
+.multi-select__value {
+  width: max-content;
+  padding-left: var(--s2);
+  padding-right: var(--s2);
+  border-radius: 40px;
+  background-color: var(--grey-200);
+  font-size: var(--fs2);
+}
+
+.multi-select svg {
+  width: 16px;
+  margin-right: var(--s1);
+}

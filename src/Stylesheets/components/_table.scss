@@ -1,0 +1,98 @@
+.table-widget__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--s2);
+  padding-bottom: var(--s2);
+}
+
+.table-holder {
+  overflow-x: visible;
+  overflow-y: auto;
+}
+
+.table-holder::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.table-holder::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.table-holder::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs2);
+  white-space: nowrap;
+}
+
+.table td {
+  padding-left: var(--s3);
+  padding-right: var(--s3);
+}
+
+.table__thead {
+  background-color: #f4f4f4;
+}
+
+.table__thead td {
+  padding-top: var(--s1);
+  padding-bottom: var(--s1);
+}
+
+.table__tbody tr {
+  border-bottom: 1px solid var(--lineColor);
+}
+
+// handle dropdown overflowing table
+.table__tbody tr:last-child .dropdown {
+  top: -39px;
+  left: calc(100% + 12px);
+}
+
+.table__tbody tr:last-child .dropdown::after {
+  content: "";
+  position: absolute;
+  bottom: 15px;
+  left: -12px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent var(--light-blue) transparent transparent;
+}
+
+.table__tbody td {
+  padding-top: var(--s3);
+  padding-bottom: var(--s3);
+}
+
+.table__btn {
+  background-color: var(--grey-100);
+}
+
+.table__btn--active {
+  background-color: var(--light-blue);
+}
+
+.table__form td {
+  padding: var(--s2) var(--s3);
+}
+
+.table__input {
+  max-width: 120px;
+  padding: 0;
+  border: none;
+  font-size: var(--fs2);
+}
+
+.table__input:focus {
+  box-shadow: none;
+}
+
+.table__input:focus-visible {
+  outline: none;
+}

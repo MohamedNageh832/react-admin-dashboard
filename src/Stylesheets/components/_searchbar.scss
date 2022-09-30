@@ -1,0 +1,26 @@
+.searchbar-holder {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  gap: var(--s2);
+  max-width: 400px;
+}
+
+.searchbar {
+  position: relative;
+  flex-grow: 1;
+  background-color: #fff;
+  color: var(--secondary);
+}
+
+.searchbar__btn {
+  position: absolute;
+  top: 4px;
+  bottom: 1px;
+  left: 8px;
+  color: inherit;
+}
+
+.searchbar__input {
+  width: 100%;
+}

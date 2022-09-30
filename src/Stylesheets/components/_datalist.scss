@@ -1,0 +1,32 @@
+.datalist {
+  position: absolute;
+  top: calc(100% + 10px);
+  width: 100%;
+  padding: var(--s2);
+  border-radius: var(--mainBR);
+  background-color: var(--light-blue);
+  font-size: var(--fs2);
+}
+
+.datalist::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: 10px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent var(--light-blue);
+}
+
+.datalist__option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s2);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.datalist__option:hover {
+  background-color: #fff;
+}

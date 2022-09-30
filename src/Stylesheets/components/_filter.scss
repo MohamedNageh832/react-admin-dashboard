@@ -1,0 +1,49 @@
+.filter {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  padding: var(--s3);
+  border-radius: var(--mainBR);
+  background-color: #fff;
+  white-space: nowrap;
+}
+
+.filter__btn {
+  background-color: var(--light-blue);
+  color: var(--blue);
+  font-size: var(--fs3);
+}
+
+.filter-form {
+  position: absolute;
+  top: 85%;
+  box-shadow: 1px 1px 10px #ededed;
+  font-size: var(--fs2);
+}
+
+.filter-form__body {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--s5);
+}
+
+.filter-form__column {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+}
+
+.filter-form__collection-state {
+  display: flex;
+  gap: var(--s2);
+}
+
+.filter-form__title {
+  margin-top: var(--s3);
+  margin-bottom: var(--s2);
+}

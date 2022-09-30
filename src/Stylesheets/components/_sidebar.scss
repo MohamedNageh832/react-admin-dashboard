@@ -1,0 +1,22 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: var(--s2);
+  width: 300px;
+  padding: var(--s3);
+  height: 100vh;
+  background-color: #343a40;
+  color: #fff;
+}
+
+.sidebar__link {
+  width: 100%;
+  padding: var(--s1) var(--s2);
+  border-radius: var(--mainBR);
+  font-size: var(--fs3);
+}
+
+.sidebar__link.active {
+  background-color: #484e53;
+}

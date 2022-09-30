@@ -1,0 +1,39 @@
+.btn {
+  padding: var(--s2) var(--s3);
+  border-radius: var(--mainBR);
+}
+
+.btn--secondary {
+  background-color: var(--grey-200);
+  color: var(--secondary);
+}
+
+.btn--green {
+  background-color: var(--green);
+  color: #fff;
+}
+
+.btn--green-disabled {
+  background-color: var(--green-disabled);
+}
+
+.btn--blue {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.btn--blue-disabled {
+  background-color: var(--blue-disabled);
+  color: #fff;
+}
+
+.btn-underlined--blue {
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.btn-link--sec {
+  color: var(--secondary);
+  padding-bottom: var(--s2);
+}

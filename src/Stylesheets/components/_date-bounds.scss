@@ -1,0 +1,10 @@
+.date-bounds {
+  display: flex;
+  gap: var(--s2);
+  align-items: center;
+}
+
+.date-bounds__input {
+  width: 120px;
+  font-size: var(--fs2);
+}

@@ -1,0 +1,9 @@
+.pending-contracts {
+  display: flex;
+  gap: var(--s2);
+  overflow: auto;
+}
+
+.contract-request {
+  width: 300px;
+}

@@ -1,0 +1,22 @@
+.dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  z-index: 1;
+  width: fit-content;
+  padding: var(--s2);
+  border-radius: var(--mainBR);
+  background-color: var(--light-blue);
+}
+
+.dropdown__item {
+  display: flex;
+  column-gap: var(--s1);
+  padding: var(--s1) var(--s2);
+  border-radius: var(--mainBR);
+  white-space: nowrap;
+}
+
+.dropdown__item:hover {
+  background-color: #fff;
+}
