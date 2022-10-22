@@ -4,7 +4,7 @@ import RequireAuth from "./Auth/requireAuth";
 import Homepage from "./Pages/Homepage";
 import LoginPage from "./Pages/login/Login";
 import NotFound from "./Pages/404page/NotFound";
-import DataEntryPages from "./Pages/data-entry/DataEntryPages";
+import DataEntryPages from "./routes/data-entry";
 
 function App() {
   return (
@@ -17,9 +17,8 @@ function App() {
             element={<RequireAuth allowedRoles={["dataEntry", "admin"]} />}
           >
             <Route path="/authtest" element={<Homepage />} />
+            <Route path="/staff/dataEntry/*" element={<DataEntryPages />} />
           </Route>
-
-          <Route path="/staff/dataEntry/*" element={<DataEntryPages />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

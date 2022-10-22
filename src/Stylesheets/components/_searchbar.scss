@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-grow: 1;
+  flex-wrap: wrap;
   gap: var(--s2);
   max-width: 400px;
 }
@@ -9,6 +10,7 @@
 .searchbar {
   position: relative;
   flex-grow: 1;
+  flex-wrap: wrap;
   background-color: #fff;
   color: var(--secondary);
 }

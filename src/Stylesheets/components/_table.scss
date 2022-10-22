@@ -2,13 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--s2);
-  padding-bottom: var(--s2);
+  padding-bottom: var(--s3);
 }
 
 .table-holder {
-  overflow-x: visible;
-  overflow-y: auto;
+  position: relative;
+  overflow: auto;
 }
 
 .table-holder::-webkit-scrollbar {
@@ -36,13 +35,20 @@
   padding-right: var(--s3);
 }
 
-.table__thead {
+.table__thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: var(--s1) var(--s3);
   background-color: #f4f4f4;
+  font-weight: normal;
+  text-align: inherit;
 }
 
-.table__thead td {
-  padding-top: var(--s1);
-  padding-bottom: var(--s1);
+.table__thead .table__cell--checkbox,
+.table__tbody .table__cell--checkbox {
+  position: relative;
+  padding-left: 0;
 }
 
 .table__tbody tr {
@@ -78,7 +84,7 @@
   background-color: var(--light-blue);
 }
 
-.table__form td {
+.table__row--form td {
   padding: var(--s2) var(--s3);
 }
 
@@ -95,4 +101,89 @@
 
 .table__input:focus-visible {
   outline: none;
+}
+
+.table__serial {
+  position: absolute;
+  top: -16px;
+  right: 122%;
+  z-index: 1;
+  padding: var(--s3);
+  border-radius: var(--mainBR);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+}
+
+.table__serial::after {
+  content: "";
+  position: absolute;
+  top: 47px;
+  right: -10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+}
+
+.table__tbody tr:last-child .table__serial {
+  top: auto;
+  bottom: 16px;
+  right: 122%;
+}
+
+.table__tbody tr:last-child .table__serial::after {
+  top: auto;
+  bottom: 16px;
+}
+
+.serial__close {
+  color: #999;
+  cursor: pointer;
+}
+
+.serial__close:hover {
+  color: #fff;
+}
+
+.serial__input {
+  border: none;
+  border-bottom: 1px solid #999;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.serial__btn {
+  color: #ddd;
+}
+
+.serial__input:focus {
+  box-shadow: none;
+  border-bottom: 1px solid #eee;
+}
+
+.nested-table-holder {
+  padding: 0 !important;
+}
+
+.nested-table td {
+  padding-top: var(--s2);
+  padding-bottom: var(--s2);
+}
+
+.nested-table {
+  background-color: #f5f5f5;
+  animation: fadeIn 0.5s forwards;
+}
+
+.nested-table thead {
+  border-top: 1px solid #888;
+  background-color: #ccc;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,38 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import FormButton from "../../Components/FormButton";
-import FormInput from "../../Components/FormInput";
+import FormButton from "../../Components/form/FormButton";
+import FormInput from "../../Components/form/FormInput";
 import logo from "../../Assets/Images/logo.png";
 
-import useFetch from "../../Hooks/useFetch";
+import useFetch from "../../Hooks/useFetch[demo]";
 import useAuth from "../../Hooks/useAuth";
 
+const inputs = [
+  {
+    id: 0,
+    name: "email",
+    type: "email",
+    label: "البريد الإليكتروني",
+    errorMessage: "البريد الاليكتروني يجب ان يحتوي علي علامة @",
+    required: true,
+  },
+  {
+    id: 1,
+    name: "password",
+    type: "password",
+    label: "كلمة المرور",
+    errorMessage: "هذا الحقل مطلوب",
+    required: true,
+  },
+];
+
 const LoginPage = () => {
-  const { isPending, error, excuteFetch } = useFetch("/as");
+  const { isPending, error, excuteFetch } = useFetch(
+    "https://aswangreen.pythonanywhere.com/api/authUser?format=json"
+  );
   const auth = useAuth();
+
+  useEffect(() => {
+    if (auth.user !== null) auth.redirect();
+  }, [auth]);
+
   const [values, setValues] = useState({
-    emailAddress: "",
+    email: "",
     password: "",
   });
-
-  const inputs = [
-    {
-      id: 0,
-      name: "email",
-      type: "email",
-      label: "البريد الإليكتروني",
-      errorMessage: "هذا الحقل مطلوب",
-      required: true,
-    },
-    {
-      id: 1,
-      name: "password",
-      type: "password",
-      label: "كلمة المرور",
-      errorMessage: "هذا الحقل مطلوب",
-      required: true,
-    },
-  ];
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -51,7 +58,8 @@ const LoginPage = () => {
 
     const response = await excuteFetch(requestOptions);
 
-    if (response?.authenticated) auth.login(response);
+    console.log(response);
+    if (response?.isAuthenticated) auth.login(response);
   };
 
   return (

@@ -1,15 +1,25 @@
 .navbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  z-index: 3;
   padding: var(--s2) var(--s3);
   background-color: #fff;
+}
+
+.navbar__sidebar-toggler {
+  display: none;
+}
+
+.toggler__icon {
+  transform: scale(1.4);
 }
 
 .navbar__logo {
   width: 100px;
   height: 40px;
-  vertical-align: bottom;
 }
 
 .navbar__user-options {
@@ -36,4 +46,10 @@
 .user-option__info,
 .user-option__logout-btn {
   font-size: var(--fs2);
+}
+
+@media (max-width: 768px) {
+  .navbar__sidebar-toggler {
+    display: block;
+  }
 }

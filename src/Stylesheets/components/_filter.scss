@@ -26,7 +26,7 @@
 }
 
 .filter-form__body {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: var(--s5);
 }
@@ -34,16 +34,33 @@
 .filter-form__column {
   display: flex;
   flex-direction: column;
-  flex: 1 1 0;
   flex-wrap: wrap;
+  min-width: 270px;
 }
 
 .filter-form__collection-state {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--s2);
 }
 
 .filter-form__title {
   margin-top: var(--s3);
   margin-bottom: var(--s2);
+}
+
+@media (max-width: 576px) {
+  .filter {
+    position: static;
+  }
+
+  .filter-form {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    z-index: 5;
+    overflow: scroll;
+    width: 100%;
+    height: calc(100vh - 56px);
+  }
 }

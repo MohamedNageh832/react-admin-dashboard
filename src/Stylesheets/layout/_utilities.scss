@@ -60,7 +60,7 @@
   font-size: var(--fs2);
 }
 
-.link--grey {
+.link--sec {
   color: var(--secondary);
 }
 
@@ -92,13 +92,17 @@
   display: inline-flex;
 }
 
-@for $i from 1 through 5 {
-  .flex-grow-#{$i} {
-    flex-grow: $i;
+@for $i from 1 through 6 {
+  .fs-#{$i} {
+    font-size: var(--fs#{$i});
   }
 }
 
 @for $i from 1 through 5 {
+  .flex-grow-#{$i} {
+    flex-grow: $i;
+  }
+
   .gap-#{$i} {
     gap: var(--s#{$i});
   }
@@ -122,8 +126,22 @@
   .mb-#{$i} {
     margin-bottom: var(--s#{$i});
   }
+
+  .ml-#{$i} {
+    margin-left: var(--s#{$i});
+  }
 }
 
 .w-100 {
   width: 100%;
+}
+
+.title--sm {
+  color: var(--secondary);
+  font-size: var(--fs2);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  user-select: none;
 }

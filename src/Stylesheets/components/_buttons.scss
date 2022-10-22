@@ -1,6 +1,7 @@
 .btn {
   padding: var(--s2) var(--s3);
   border-radius: var(--mainBR);
+  font-size: var(--fs3);
 }
 
 .btn--secondary {
@@ -15,6 +16,11 @@
 
 .btn--green-disabled {
   background-color: var(--green-disabled);
+}
+
+.btn--red {
+  background-color: var(--red);
+  color: #fff;
 }
 
 .btn--blue {
@@ -36,4 +42,9 @@
 .btn-link--sec {
   color: var(--secondary);
   padding-bottom: var(--s2);
+}
+
+.btn--sm {
+  padding: var(--s1) var(--s2);
+  font-size: var(--fs2);
 }

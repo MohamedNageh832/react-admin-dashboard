@@ -5,9 +5,16 @@
 }
 
 .widget {
+  min-width: 0;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: #fff;
+}
+
+.widget--table {
+  position: relative;
+  height: 100%;
+  min-height: 280px;
 }
 
 .widget--empty {

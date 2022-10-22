@@ -1,13 +1,13 @@
 .content-holder {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  min-height: calc(100vh - 59px);
 }
 
 .main-content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   row-gap: var(--s3);
-  width: calc(100% - 300px);
+  min-width: 0;
   padding: var(--s3);
 }

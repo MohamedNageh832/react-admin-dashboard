@@ -23,8 +23,13 @@
 @use "./components/date-bounds";
 @use "./components/dropdown";
 @use "./components/edit-client-services";
+@use "./components/badges";
+@use "./components/checkbox";
+@use "./components/loaders";
 
 @use "./pages/login";
 @use "./pages/data-entry-pages";
 @use "./pages/data-entry-home";
 @use "./pages/create-contracts";
+
+@use "./base/print-styles";
