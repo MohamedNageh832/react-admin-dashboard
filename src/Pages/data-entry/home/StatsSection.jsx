@@ -44,7 +44,7 @@ const StatsSection = () => {
   );
 
   return (
-    <section className="stats-section">
+    <section className="widget stats-section">
       {isPending && <div>جار التحميل...</div>}
       {error && <div>حدث خطأ!</div>}
       {data &&

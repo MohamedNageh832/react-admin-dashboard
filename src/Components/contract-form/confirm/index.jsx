@@ -24,7 +24,7 @@ const Confirm = ({ values, setCurrentStep }) => {
   };
 
   return (
-    <form className="form pos-fixed pos-center" onSubmit={handleSubmit}>
+    <form className="form pos-center" onSubmit={handleSubmit}>
       <FormHeader subTitle="تأكيد البيانات">ادخال تعاقد جديد</FormHeader>
 
       <section className="form__overflow">

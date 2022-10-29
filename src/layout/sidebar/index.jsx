@@ -1,14 +1,13 @@
 import { Close } from "@mui/icons-material";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import useOutsideClick from "../../Hooks/useOutsideClick";
 
 const Sidebar = ({ links, showSidebar, setShowSidebar }) => {
-  useEffect(() => {
-    const hideSidebar = () => {
-      setShowSidebar(false);
-    };
+  const hideSidebar = () => {
+    setShowSidebar(false);
+  };
 
+  useEffect(() => {
     document.addEventListener("mousedown", hideSidebar);
 
     return () => document.addEventListener("mousedown", hideSidebar);

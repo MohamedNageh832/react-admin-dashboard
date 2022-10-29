@@ -3,7 +3,7 @@ import Datalist from "../datalist";
 
 const FormDatalist = (props) => {
   const { label, options, value, index, onChange, ...otherProps } = props;
-  const [valueClone, setValueClone] = useState(value || "");
+  const [valueClone, setValueClone] = useState(value);
   const [showList, setShowList] = useState(false);
 
   const handleChange = (e) => {
@@ -17,7 +17,7 @@ const FormDatalist = (props) => {
 
       <input
         type="text"
-        value={valueClone}
+        value={value}
         {...otherProps}
         onClick={(e) => e.stopPropagation()}
         onChange={handleChange}

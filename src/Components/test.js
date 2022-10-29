@@ -2795,6 +2795,372 @@ const x = {
       phone: "01233326751",
       area: "العقاد",
       deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
+      clientId: 8,
+      checked: true,
+      nestedTable: {
+        thead: [
+          "تاريخ التعاقد",
+          "اسم العميل",
+          "رقم الهاتف",
+          "المنطقة",
+          "المستحق",
+        ],
+        rows: [
+          {
+            date: "12/2/2022",
+            clientName: { value: "محمد حسين", route: "" },
+            phone: "01233326751",
+            area: "العقاد",
+            deserved: 1200,
+          },
+        ],
+      },
+    },
+    {
+      date: "12/2/2022",
+      clientName: "محمد حسين",
+      phone: "01233326751",
+      area: "العقاد",
+      deserved: 1200,
       clientId: 7,
       nestedTable: {
         thead: [

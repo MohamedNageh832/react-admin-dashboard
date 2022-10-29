@@ -5,6 +5,7 @@ import Homepage from "./Pages/Homepage";
 import LoginPage from "./Pages/login/Login";
 import NotFound from "./Pages/404page/NotFound";
 import DataEntryPages from "./routes/data-entry";
+import ClientProfile from "./Pages/global/client-profile";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             element={<RequireAuth allowedRoles={["dataEntry", "admin"]} />}
           >
             <Route path="/authtest" element={<Homepage />} />
-            <Route path="/staff/dataEntry/*" element={<DataEntryPages />} />
+            <Route path="/staff/data-entry/*" element={<DataEntryPages />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

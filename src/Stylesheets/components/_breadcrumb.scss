@@ -1,0 +1,5 @@
+.breadcrumb__link::after {
+  content: "/";
+  margin-left: var(--s2);
+  margin-right: var(--s2);
+}

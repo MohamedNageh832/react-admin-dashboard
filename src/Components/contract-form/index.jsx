@@ -5,19 +5,32 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./step-three";
 
-const ContractForm = ({ showForm, setShowForm }) => {
+const ContractForm = ({ data, setShowForm }) => {
+  const {
+    clientName,
+    phone,
+    area,
+    addressDetails,
+    building,
+    apartment,
+    countContractFor,
+    services,
+    contractSerial,
+    contractDate,
+  } = data || {};
+
   const [currentStep, setCurrentStep] = useState(1);
   const [values, setValues] = useState({
-    clientName: "",
-    phoneNumber: "",
-    area: "",
-    addressDetails: "",
-    buildingNumber: "",
-    apartment: "",
-    countContractFor: "",
-    services: "",
-    contractSerial: "",
-    contractDate: "",
+    clientName: clientName || "",
+    phone: phone || "",
+    area: area || "",
+    addressDetails: addressDetails || "",
+    building: building || "",
+    apartment: apartment || "",
+    countContractFor: countContractFor || "",
+    services: services || "",
+    contractSerial: contractSerial || "",
+    contractDate: contractDate || "",
   });
 
   const onChange = (e) => {
@@ -51,12 +64,10 @@ const ContractForm = ({ showForm, setShowForm }) => {
   };
 
   return (
-    showForm && (
-      <>
-        <div className="overlay" onClick={() => setShowForm(false)}></div>
-        {steps[currentStep]}
-      </>
-    )
+    <>
+      <div className="overlay" onClick={() => setShowForm(false)}></div>
+      {steps[currentStep]}
+    </>
   );
 };
 

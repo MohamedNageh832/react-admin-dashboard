@@ -26,10 +26,12 @@
 @use "./components/badges";
 @use "./components/checkbox";
 @use "./components/loaders";
+@use "./components/breadcrumb";
 
 @use "./pages/login";
 @use "./pages/data-entry-pages";
 @use "./pages/data-entry-home";
 @use "./pages/create-contracts";
+@use "./pages/client-profile";
 
 @use "./base/print-styles";

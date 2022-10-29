@@ -25,6 +25,9 @@
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid #ccc;
   transition: all 0.15s ease-in-out;
 }
@@ -55,4 +58,18 @@
 
 .checkbox__input:checked + .checkbox__ui::after {
   opacity: 1;
+}
+
+.checkbox--semi-checked .checkbox__ui {
+  border-color: #aaa;
+}
+
+.checkbox--semi-checked .checkbox__ui::after {
+  position: static;
+  opacity: 1;
+  transform: none;
+  width: 80%;
+  height: 2px;
+  border: none;
+  background-color: #aaa;
 }

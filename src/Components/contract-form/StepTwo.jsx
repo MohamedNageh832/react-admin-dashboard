@@ -12,24 +12,18 @@ const StepTwo = ({ values, onChange, setCurrentStep }) => {
     },
     {
       label: "عمارة",
-      name: "buildingNumber",
+      name: "building",
       type: "text",
-      errorMessage: "هذا الحقل مطلوب",
-      required: true,
     },
     {
       label: "شقة",
       name: "apartment",
       type: "number",
-      errorMessage: "هذا الحقل مطلوب",
-      required: true,
     },
     {
       label: "حساب التعاقد ل",
       name: "countContractFor",
       type: "text",
-      errorMessage: "هذا الحقل مطلوب",
-      required: true,
     },
   ];
 
@@ -40,7 +34,7 @@ const StepTwo = ({ values, onChange, setCurrentStep }) => {
   };
 
   return (
-    <form className="form pos-fixed pos-center" onSubmit={handleSubmit}>
+    <form className="form pos-center" onSubmit={handleSubmit}>
       <FormHeader subTitle="الخطوة 2 من 3">ادخال تعاقد جديد</FormHeader>
 
       <FormInput

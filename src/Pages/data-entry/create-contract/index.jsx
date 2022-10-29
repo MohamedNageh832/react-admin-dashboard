@@ -1,24 +1,31 @@
 import { useState } from "react";
 import ContractForm from "../../../Components/contract-form";
 import useFetch from "../../../Hooks/useFetch";
-import ContractRequest from "../../../Components/contract-request";
+import ContractRequest from "./contract-request";
 
 const CreateContract = () => {
   const [showForm, setShowForm] = useState(false);
   const { isPending, error, data } = useFetch("");
 
+  const x = { clientName: "mon" };
+
   return (
     <>
       <section className="pending-contracts">
-        {!data && <div className="widget--empty">لا يوجد طلبات حاليا</div>}
-        <ContractRequest />
+        {(!data || data.length === 0) && (
+          <div className="widget--empty">
+            {isPending && <span>جار التحميل...</span>}
+            {!isPending && <span>لا يوجد طلبات حاليا</span>}
+          </div>
+        )}
+        {data && data.map((item, i) => <ContractRequest data={item} key={i} />)}
       </section>
       <section className="create-contracts">
         <button className="btn btn--blue" onClick={() => setShowForm(true)}>
           ادخال تعاقد جديد
         </button>
       </section>
-      <ContractForm showForm={showForm} setShowForm={setShowForm} />
+      {showForm && <ContractForm setShowForm={setShowForm} />}
     </>
   );
 };

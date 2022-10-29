@@ -1,15 +1,16 @@
 import { useState } from "react";
 import deepClone from "../../utils/deepClone";
 import AddServiceBtn from "./AddServiceBtn";
-import EditServicesRow from "./edit-services-row";
+import EditServicesRows from "./edit-services-rows";
 import EditServicesTable from "./EditServicesTable";
 import ServicesControls from "./ServicesControls";
-
-const thead = ["الخدمة", "سعر الخدمة", "السعر لكل", "نوع الخدمة", ""];
 
 const EditClientServices = (props) => {
   const { clientName, servicesData, setValues, setShowList } = props;
 
+  const [errors, setErrors] = useState({
+    validServices: true,
+  });
   const [services, setServices] = useState(
     servicesData.length > 0
       ? deepClone(servicesData)
@@ -17,30 +18,53 @@ const EditClientServices = (props) => {
           {
             service: "",
             price: "",
-            per: "month",
+            per: "",
             type: "continous",
           },
         ]
   );
 
+  const handleAddService = () => {
+    for (let i = 0; i < services.length; i++) {
+      const service = services[i];
+      const emptyService = Object.values(service).some((el) => el === "");
+
+      if (emptyService) {
+        setErrors((prev) => ({ ...prev, validServices: false }));
+        return;
+      } else setErrors((prev) => ({ ...prev, validServices: true }));
+    }
+
+    const newService = [
+      ...services,
+      {
+        service: "",
+        price: "",
+        per: "",
+        type: "continous",
+      },
+    ];
+
+    setServices(newService);
+  };
+
   return (
     <>
       <div className="overlay"></div>
-      <section className="edit-client-services">
-        <h3 className="mb-2">تعديل الخدمات ({clientName})</h3>
-        <EditServicesTable thead={thead}>
-          {services.map((service, i) => (
-            <EditServicesRow
-              key={i}
-              index={i}
-              service={service}
-              services={services}
-              setServices={setServices}
-            />
-          ))}
+      <section className="edit-client-services widget pos-center">
+        <h3 className="h3">تعديل الخدمات ({clientName})</h3>
+        <EditServicesTable services={services}>
+          <EditServicesRows
+            setErrors={setErrors}
+            services={services}
+            setServices={setServices}
+          />
         </EditServicesTable>
 
-        <AddServiceBtn services={services} setServices={setServices} />
+        <AddServiceBtn
+          showError={!errors.validServices}
+          onClick={handleAddService}
+        />
 
         <ServicesControls
           services={services}

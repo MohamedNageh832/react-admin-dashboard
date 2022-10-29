@@ -2,7 +2,7 @@ import { useState } from "react";
 import Checkbox from "../../../../Components/form/Checkbox";
 import SerialForm from "./SerialForm";
 
-const SerialCheckbox = ({ clientData, selected, setSelected }) => {
+const SerialCheckbox = ({ clientData, selected, setSelected, readOnly }) => {
   const [showForm, setShowForm] = useState(false);
   const { clientId } = clientData;
 
@@ -32,7 +32,11 @@ const SerialCheckbox = ({ clientData, selected, setSelected }) => {
 
   return (
     <>
-      <Checkbox checked={isSelected} onChange={handleCheckbox} />
+      <Checkbox
+        checked={isSelected}
+        onChange={readOnly ? undefined : handleCheckbox}
+        readOnly={readOnly}
+      />
       {showForm && (
         <SerialForm setShowForm={setShowForm} onSubmit={handleSubmit} />
       )}

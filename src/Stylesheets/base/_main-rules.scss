@@ -26,6 +26,10 @@ input {
   font-size: var(--fs3);
 }
 
+select:focus-visible {
+  outline: none;
+}
+
 button {
   border: none;
   background-color: inherit;

@@ -1,12 +1,21 @@
-import TableHead from "../table/TableHead";
+const EditServicesTable = ({ services, children }) => {
+  const header = ["الخدمة", "سعر الخدمة", "السعر لكل", "نوع الخدمة"];
 
-const EditServicesTable = ({ thead, children }) => {
   return (
-    <table className="table">
-      <TableHead thead={thead} />
+    <section className="edit-services-table">
+      <header className="edit-services-table__header">
+        {header.map((cell, i) => (
+          <span className="edit-services-table__heading" key={i}>
+            {cell}
+          </span>
+        ))}
+        {services.length > 1 && (
+          <span className="edit-services-table__options"></span>
+        )}
+      </header>
 
-      <tfoot>{children}</tfoot>
-    </table>
+      {children}
+    </section>
   );
 };
 

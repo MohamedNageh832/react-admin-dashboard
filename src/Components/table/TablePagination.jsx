@@ -4,8 +4,9 @@ import {
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
-const TablePagination = ({ numberOfPages, currentPage, setCurrentPage }) => {
+const TablePagination = ({ numberOfPages, onPageChange }) => {
   const [arrOfCurrPages, setArrOfCurrentPages] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handlePagination = () => {
     if (numberOfPages < 6) {
@@ -57,13 +58,7 @@ const TablePagination = ({ numberOfPages, currentPage, setCurrentPage }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ currentPage }),
-    });
+    onPageChange(currentPage);
   };
 
   return (

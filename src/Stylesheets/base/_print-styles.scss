@@ -1,40 +1,20 @@
-.thead__space-in-print {
+.thead__space-in-print,
+.print__page-title,
+.print__counter {
   display: none;
 }
-
-// .print__counter {
-//   display: none;
-// }
 
 @media print {
   body {
     background-color: #fff;
   }
 
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+  *:not(.print) {
+    visibility: hidden;
   }
 
-  [data-print]::before {
-    content: attr(data-print);
-    position: fixed;
-    top: 1.1rem;
-    left: 1rem;
-    z-index: 10;
-    font-size: 14px;
-  }
-
-  .navbar > *:not(.navbar__logo),
-  .sidebar,
-  .main-content > *:not(.widget--table),
-  [hide-on-print],
-  .pagination,
-  .table th:last-child,
-  .table td:last-child {
-    display: none;
+  .print * {
+    visibility: visible;
   }
 
   .thead__space-in-print {
@@ -42,19 +22,40 @@
     height: 62px;
   }
 
-  .print-wrapper {
+  thead th,
+  thead td {
+    height: 38px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .print {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
-    height: 100%;
+    z-index: 1000;
+    background-color: #fff;
+  }
+
+  .print__page-title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 56px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
   }
 
   .print__counter {
     position: absolute;
     left: 1rem;
     display: block;
-    z-index: 12;
   }
 
   .main-content,
@@ -63,11 +64,14 @@
     padding: 0;
   }
 
-  .clients-num {
+  .table-holder {
+    height: auto;
+  }
+
+  .print__footer {
     position: fixed;
-    bottom: 0px;
-    right: -10px;
-    transform: translateX(-50%);
+    bottom: 0;
+    right: 0;
   }
 
   .checkbox {
@@ -83,11 +87,44 @@
     opacity: 0;
   }
 
-  .table__tbody td {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  table tbody td {
+    padding: 0 10px !important;
+    height: 53px !important;
+    page-break-inside: auto !important;
+  }
+
+  table tr,
+  table td {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  table thead {
+    display: table-header-group;
+  }
+
+  table tfoot {
+    display: table-footer-group;
+  }
+
+  .table__thead th:last-child,
+  .table td:last-child,
+  .controls {
+    display: none;
+  }
+
+  .ongoing-collection-table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
 }
+
 @page {
-  size: A4;
+  size: 21cm 29.7cm;
+  margin: 10mm;
 }

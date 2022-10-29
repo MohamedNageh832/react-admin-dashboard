@@ -1,25 +1,16 @@
 import { Add } from "@mui/icons-material";
 
-const AddServiceBtn = ({ services, setServices }) => {
-  const handleAddService = () => {
-    const newService = [
-      ...services,
-      {
-        service: "",
-        price: "",
-        per: "month",
-        type: "continous",
-      },
-    ];
-
-    setServices(newService);
-  };
-
+const AddServiceBtn = ({ showError, onClick }) => {
   return (
-    <button className="link" type="button" onClick={handleAddService}>
-      <Add />
-      اضف خدمة جديدة
-    </button>
+    <>
+      {showError && (
+        <div className="text--red mb-2">قم بملء جميع حقول الادخال</div>
+      )}
+      <button className="link fs-3" type="button" onClick={onClick}>
+        <Add />
+        اضف خدمة جديدة
+      </button>
+    </>
   );
 };
 

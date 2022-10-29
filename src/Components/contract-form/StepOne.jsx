@@ -11,7 +11,7 @@ const formData = [
   },
   {
     label: "رقم الهاتف",
-    name: "phoneNumber",
+    name: "phone",
     type: "number",
     errorMessage: "يجب ان يتكون رقم الهاتف من 11 رقم تبدأ ب '01'",
     required: true,
@@ -33,7 +33,7 @@ const StepOne = ({ values, onChange, setCurrentStep }) => {
   };
 
   return (
-    <form className="form pos-fixed pos-center" onSubmit={handleSubmit}>
+    <form className="form pos-center" onSubmit={handleSubmit}>
       <FormHeader subTitle="الخطوة 1 من 3">ادخال تعاقد جديد</FormHeader>
 
       {formData.map((input, i) => (

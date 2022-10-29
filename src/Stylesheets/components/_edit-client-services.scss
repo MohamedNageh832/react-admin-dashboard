@@ -1,10 +1,45 @@
 .edit-client-services {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 690px;
+  max-width: 95%;
+  max-height: 90vh;
   z-index: 4;
-  background-color: var(--foreground);
-  padding: var(--s3);
+  overflow: auto;
+  font-size: var(--fs2);
+}
+
+.edit-services-table {
+  margin-bottom: var(--s3);
+}
+
+.edit-services-table__header,
+.edit-services-table--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  width: 100%;
+  padding: var(--s2);
+}
+
+.edit-services-table__header {
+  margin-top: var(--s2);
   border-radius: var(--mainBR);
+  background-color: #f4f4f4;
+}
+
+.edit-services-table__heading {
+  padding-right: var(--s2);
+}
+
+.edit-services-table__heading,
+.edit-services-table__cell {
+  flex-grow: 1;
+  width: 130px;
+}
+
+.edit-services-table__options {
+  width: 50px;
+}
+
+.edit-services-table--row {
+  border-bottom: 1px solid #ddd;
 }

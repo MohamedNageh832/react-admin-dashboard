@@ -33,13 +33,23 @@
   color: #fff;
 }
 
+.btn-underlined {
+  padding-bottom: var(--s2);
+  border-bottom: 2px solid #000;
+}
+
 .btn-underlined--blue {
   padding-bottom: var(--s2);
-  border-bottom: 1px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
   color: var(--blue);
 }
 
-.btn-link--sec {
+.btn-link {
+  color: var(--blue);
+  padding-bottom: var(--s2);
+}
+
+.btn-link--secondary {
   color: var(--secondary);
   padding-bottom: var(--s2);
 }
