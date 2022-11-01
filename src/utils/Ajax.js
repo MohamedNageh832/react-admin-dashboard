@@ -56,7 +56,6 @@ const Ajax = () => {
       console.log(err);
     } finally {
       abortCont = null;
-      isPending = false;
     }
   };
 

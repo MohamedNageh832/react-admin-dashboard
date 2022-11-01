@@ -17,9 +17,15 @@ const formChecboxes = [
     name: "area",
     label: "المنطقة",
   },
+  {
+    name: "nestedTables",
+    label: "اظهار تفاصيل المستحق",
+  },
 ];
 
-const PrintOptions = ({ data, setData, onSubmit }) => {
+const PrintOptions = ({ data, setData, onSubmit, printReady }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
   const onChange = (e) => {
     const { name, type, value, checked } = e.target;
 
@@ -29,10 +35,15 @@ const PrintOptions = ({ data, setData, onSubmit }) => {
 
   useEffect(() => {
     return () => {
-      const { collector, ...otherData } = data;
+      if (!isMounted) {
+        setIsMounted(true);
+        return;
+      }
+
+      const { collector, nestedTables, ...otherData } = data;
 
       Object.keys(otherData).map((key) => (data[key] = true));
-      setData({ collector, ...otherData });
+      setData({ collector, nestedTables, ...otherData });
     };
   }, []);
 
@@ -62,7 +73,7 @@ const PrintOptions = ({ data, setData, onSubmit }) => {
       </section>
 
       <footer className="form__footer">
-        <button className="btn btn--blue" type="submit">
+        <button className="btn btn--blue" type="submit" disabled={printReady}>
           تأكيد طباعة الطلب
         </button>
       </footer>

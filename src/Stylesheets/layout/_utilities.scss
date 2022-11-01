@@ -124,6 +124,10 @@
   }
 }
 
+.p-0 {
+  padding: 0;
+}
+
 @for $i from 1 through 5 {
   .flex-grow-#{$i} {
     flex-grow: $i;
@@ -141,6 +145,14 @@
     padding-top: var(--s#{$i});
   }
 
+  .pr-#{$i} {
+    padding-right: var(--s#{$i});
+  }
+
+  .pb-#{$i} {
+    padding-bottom: var(--s#{$i});
+  }
+
   .mt-#{$i} {
     margin-top: var(--s#{$i});
   }
@@ -156,6 +168,10 @@
   .ml-#{$i} {
     margin-left: var(--s#{$i});
   }
+}
+
+.text-center {
+  text-align: center;
 }
 
 .w-50 {

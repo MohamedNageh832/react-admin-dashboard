@@ -69,10 +69,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
 
       {showTable && (
         <>
-          <TableWidget
-            isPending={isPending}
-            className="ongoing-collection-table"
-          >
+          <TableWidget isPending={isPending} className="table-widget--center">
             {collectionTable && (
               <>
                 <section className="widget__header">

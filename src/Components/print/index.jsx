@@ -5,31 +5,44 @@ let isPrinting = false;
 const EasyPrint = ({ children }) => {
   const wrapperRef = useRef();
   const [totalPages, setTotalPages] = useState([...Array(0)]);
-
   useEffect(() => {
     if (!isPrinting) return;
 
-    document.querySelectorAll(".print").forEach((el) => {
-      if (el !== wrapperRef.current) el.style.display = "block";
-    });
-
     window.print();
+
+    const tablesToBeHidden = Array.from(
+      document.querySelectorAll(".table-widget")
+    );
+
+    tablesToBeHidden.forEach((el) => {
+      el.style.display = "block";
+    });
     isPrinting = false;
   }, [totalPages]);
 
   useEffect(() => {
     if (isPrinting) {
       let totalHeight = 0;
-      document.querySelectorAll(".print").forEach((el) => {
-        if (el !== wrapperRef.current) el.style.display = "none";
-        console.log(el !== wrapperRef.current);
+
+      const tablesToBeHidden = Array.from(
+        document.querySelectorAll(".table-widget")
+      );
+
+      tablesToBeHidden.forEach((el) => {
+        if (!el.contains(wrapperRef.current)) el.style.display = "none";
+        else el.style.display = "block";
       });
 
       const children = Array.from(wrapperRef.current.children);
-      children.forEach((child) => (totalHeight += child.scrollHeight));
+      children.forEach((child) => {
+        totalHeight += child.scrollHeight;
+      });
+      const pageAvailableSpace = 923;
+      const correctionFactor = (totalHeight / pageAvailableSpace - 1) * 41;
 
-      const totalPagesNum = Math.ceil(totalHeight / 1000);
-
+      const totalPagesNum = Math.ceil(
+        (totalHeight + correctionFactor) / pageAvailableSpace
+      );
       setTotalPages([...Array(totalPagesNum)]);
     }
   }, [isPrinting]);

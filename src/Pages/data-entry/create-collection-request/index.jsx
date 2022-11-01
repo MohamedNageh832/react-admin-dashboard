@@ -1,5 +1,4 @@
 import Filter from "../../../Components/filter";
-import x from "../../../Components/test";
 import useFetch from "../../../Hooks/useFetch";
 import CreateCollectionRequestTable from "../../../Components/create-collection-request-table";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
@@ -10,23 +9,28 @@ import { useEffect } from "react";
 import TablePagination from "../../../Components/table/TablePagination";
 import Ajax from "../../../utils/Ajax";
 import PrintOptions from "./PrintOptions";
+import x from "../../../Components/test";
+import { useMemo } from "react";
 
 const CreateCollectionRequest = () => {
-  const { isPending, error, data } = useFetch("");
   const ajax = Ajax();
+  const { isPending, error, data } = useFetch("");
+  // data && console.log(data);
   const [tableData, setTableData] = useState(x);
   const [selected, setSelected] = useState([]);
   const [showPrintForm, setShowPrintForm] = useState(false);
 
-  const clientsNum = tableData.rows.length;
+  const clientsNum = tableData && tableData.rows.length;
   const numberOfPages = Math.ceil(clientsNum / 20);
   const pages = numberOfPages < 1 ? 1 : numberOfPages;
 
+  const [printReady, setPrintReady] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
   const [printData, setPrintData] = useState({
     date: true,
     phone: true,
     area: true,
+    nestedTables: false,
     collector: "",
   });
 
@@ -44,14 +48,6 @@ const CreateCollectionRequest = () => {
   };
 
   useEffect(() => {
-    if (!isPrinting) return;
-
-    print();
-
-    setIsPrinting(false);
-  }, [isPrinting]);
-
-  useEffect(() => {
     const updateTableData = () => {
       setTableData(tableData);
     };
@@ -66,34 +62,31 @@ const CreateCollectionRequest = () => {
     const data = await ajax.post({ page: currentPage });
   };
 
-  return (
-    <>
-      <section className="space-between">
-        <h2 className="heading-2">إنشاء طلب تحصيل</h2>
-        <button
-          className="btn btn--blue"
-          onClick={() => setShowPrintForm(true)}
-        >
-          طباعة
-        </button>
-      </section>
-
-      {showPrintForm && (
-        <>
-          <div
-            className="overlay"
-            onClick={() => setShowPrintForm(false)}
-          ></div>
+  const printOptions = useMemo(
+    () => (
+      <>
+        <div className="overlay" onClick={() => setShowPrintForm(false)}></div>
+        {!isPrinting && (
           <PrintOptions
             data={printData}
             setData={setPrintData}
             onSubmit={handlePrint}
+            printReady={printReady}
           />
-        </>
-      )}
+        )}
+        {isPrinting && (
+          <div className="widget pos-center flex-center">
+            <span>جار تجهيز الصفحات</span>
+            <span className="spinner mr-3"></span>
+          </div>
+        )}
+      </>
+    ),
+    [printData, isPrinting, printReady]
+  );
 
-      <Filter />
-
+  const clientsTable = useMemo(
+    () => (
       <TableWidget isPending={isPending}>
         <section className="widget__header">
           <h5 className="clients-num">{clientsNum} عميل</h5>
@@ -109,9 +102,40 @@ const CreateCollectionRequest = () => {
             selected={selected}
             setSelected={setSelected}
             printData={printData}
+            isPrinting={isPrinting}
+            setPrintReady={setPrintReady}
           />
         </PrintTemplate>
       </TableWidget>
+    ),
+    [data, selected, isPrinting]
+  );
+
+  useEffect(() => {
+    if (!printReady) return;
+
+    print();
+
+    setIsPrinting(false);
+  }, [printReady]);
+
+  return (
+    <>
+      <section className="space-between">
+        <h2 className="heading-2">إنشاء طلب تحصيل</h2>
+        <button
+          className="btn btn--blue"
+          onClick={() => setShowPrintForm(true)}
+        >
+          طباعة
+        </button>
+      </section>
+
+      {showPrintForm && printOptions}
+
+      <Filter />
+
+      {tableData && clientsTable}
     </>
   );
 };

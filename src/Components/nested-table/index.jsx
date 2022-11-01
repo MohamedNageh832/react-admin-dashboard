@@ -6,24 +6,30 @@ import TableRow from "../table/TableRow";
 
 const NestedTable = ({ data }) => {
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          {data.thead.map((cell, i) => (
-            <TableCell key={i}>{cell}</TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data.rows.map((row, i) => (
-          <TableRow key={i + 100}>
-            {row.map((cell, i) => (
-              <TableCell key={i + 200}>{cell}</TableCell>
+    <div className="nested-table-holder">
+      <Table className="nested-table">
+        <TableHead className="nested-table__thead">
+          <TableRow className="nested-table__row">
+            {data.thead.map((cell, i) => (
+              <th className="nested-table__heading" key={i}>
+                {cell}
+              </th>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {data.rows.map((row, i) => (
+            <TableRow className="nested-table__row" key={i + 100}>
+              {row.map((cell, i) => (
+                <TableCell className="nested-table__cell" key={i + 200}>
+                  {cell}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

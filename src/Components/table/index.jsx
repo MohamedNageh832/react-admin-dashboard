@@ -1,10 +1,8 @@
-const Table = ({ children, ...otherProps }) => {
+const Table = ({ children, className, ...otherProps }) => {
   return (
-    <div className="table-holder">
-      <table {...otherProps} className="table">
-        {children}
-      </table>
-    </div>
+    <table {...otherProps} className={`table ${className ? className : ""}`}>
+      {children}
+    </table>
   );
 };
 

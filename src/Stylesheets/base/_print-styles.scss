@@ -1,5 +1,6 @@
-.thead__space-in-print,
+thead .thead__space-in-print,
 .print__page-title,
+.print__page-footer,
 .print__counter {
   display: none;
 }
@@ -13,22 +14,6 @@
     visibility: hidden;
   }
 
-  .print * {
-    visibility: visible;
-  }
-
-  .thead__space-in-print {
-    display: table-row;
-    height: 62px;
-  }
-
-  thead th,
-  thead td {
-    height: 38px;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-
   .print {
     position: absolute;
     top: 0;
@@ -36,6 +21,11 @@
     width: 100%;
     z-index: 1000;
     background-color: #fff;
+  }
+
+  .print * {
+    visibility: visible;
+    animation: none !important;
   }
 
   .print__page-title {
@@ -58,39 +48,16 @@
     display: block;
   }
 
-  .main-content,
-  .widget {
-    position: static;
-    padding: 0;
-  }
-
-  .table-holder {
-    height: auto;
-  }
-
-  .print__footer {
+  .print__page-footer {
+    display: block;
     position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 213;
   }
 
-  .checkbox {
-    width: 30px;
-    height: 30px;
-  }
-
-  .checkbox__input:checked + .checkbox__ui {
-    background-color: transparent;
-  }
-
-  .checkbox__input:checked + .checkbox__ui::after {
-    opacity: 0;
-  }
-
-  table tbody td {
-    padding: 0 10px !important;
-    height: 53px !important;
-    page-break-inside: auto !important;
+  table {
+    min-width: 0 !important;
   }
 
   table tr,
@@ -107,13 +74,101 @@
     display: table-footer-group;
   }
 
-  .table__thead th:last-child,
-  .table td:last-child,
+  .table:not(.print-all) .table__heading:last-child,
+  .table:not(.print-all) .table__cell:last-child,
+  .overlay,
   .controls {
     display: none;
   }
 
-  .ongoing-collection-table {
+  .main-content,
+  .widget {
+    position: static;
+    padding: 0;
+  }
+
+  .table-holder {
+    height: auto;
+  }
+
+  .table__thead:not(.nested-table__thead) .thead__space-in-print {
+    display: table-row;
+    height: 62px;
+  }
+
+  .table__heading,
+  .table__cell {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .table__heading {
+    height: 42px;
+  }
+
+  .table__row {
+    height: 49.5px;
+  }
+
+  .table__cell--clickable {
+    color: inherit;
+    font-weight: normal;
+    cursor: inherit;
+  }
+
+  .table__checkbox {
+    width: 50px;
+  }
+
+  .nested-table__heading,
+  .nested-table__cell {
+    height: 22px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .checkbox {
+    width: 30px;
+    height: 30px;
+  }
+
+  .print-checks .checkbox__input:checked + .checkbox__ui {
+    background-color: transparent;
+  }
+
+  .checkbox:not(.checkbox--outlined)
+    .checkbox__input:checked
+    + .checkbox__ui::after {
+    opacity: 0;
+  }
+
+  .checkbox--outlined .checkbox__ui::after {
+    top: calc(50% - 12px);
+    left: calc(50% - 5px);
+    width: 8px;
+    height: 16px;
+  }
+
+  .dont-break-inside {
+    page-break-inside: avoid;
+  }
+
+  .nested-table-holder {
+    padding-right: 50px;
+  }
+
+  .nested-table-holder::before {
+    top: -12px;
+    right: 25px;
+    height: calc(100% + 8px);
+    animation: none;
+  }
+
+  .nested-table__row::before {
+    display: none;
+  }
+
+  .table-widget--center {
     position: absolute;
     top: 0;
     left: 0;

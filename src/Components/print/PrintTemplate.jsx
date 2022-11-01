@@ -1,8 +1,9 @@
 import EasyPrint, { print } from ".";
 import PageTitle from "./PageTitle";
 import logo from "../../Assets/Images/logo.png";
+import PageFooter from "./PageFooter";
 
-const PrintTemplate = ({ triggerRef, title, children }) => {
+const PrintTemplate = ({ triggerRef, title, footer, children }) => {
   return (
     <EasyPrint triggerRef={triggerRef}>
       <PageTitle>
@@ -10,6 +11,7 @@ const PrintTemplate = ({ triggerRef, title, children }) => {
         <span>{title}</span>
       </PageTitle>
       {children}
+      {footer && <PageFooter>{footer}</PageFooter>}
     </EasyPrint>
   );
 };

@@ -11,8 +11,9 @@ import PrintTemplate, {
 } from "../../../../Components/print/PrintTemplate";
 import OngoingCollectionTable from "../ongoing-collection-table";
 import TableWidget from "../../../../Components/table-widget";
-import x from "../../../../Components/test";
+import x from "../../../../Components/past-collections";
 import TablePagination from "../../../../Components/table/TablePagination";
+import PastCollectionTable from "../../ongoing-collection-requests/past-collection-table";
 
 const ajax = Ajax();
 
@@ -49,47 +50,65 @@ const CollectionHistoryTable = (props) => {
   };
 
   return (
-    <>
+    <div className="table-holder text-center">
       <Table>
         <TableHead>
           <TableRow>
-            {printData.collectionDate && <th>{data.thead.date}</th>}
-            {printData.collector && <th>{data.thead.collector}</th>}
-            {printData.requiredCollections && (
-              <th>{data.thead.requiredCollections}</th>
+            {printData.collectionDate && (
+              <th className="table__heading">{data.thead.date}</th>
             )}
-            {printData.collectionsDone && <th>{data.thead.collectionsDone}</th>}
-            {printData.areas && <th>{data.thead.areas}</th>}
+            {printData.collector && (
+              <th className="table__heading">{data.thead.collector}</th>
+            )}
+            {printData.requiredCollections && (
+              <th className="table__heading">
+                {data.thead.requiredCollections}
+              </th>
+            )}
+            {printData.collectionsDone && (
+              <th className="table__heading">{data.thead.collectionsDone}</th>
+            )}
+            {printData.areas && (
+              <th className="table__heading">{data.thead.areas}</th>
+            )}
 
-            <th>الخيارات</th>
+            <th className="table__heading">الخيارات</th>
           </TableRow>
         </TableHead>
 
         <TableBody>
           {data.rows.length > 0 &&
             data.rows.map((row, i) => (
-              <TableRow key={i + 200}>
-                {printData.collectionDate && <TableCell>{row.date}</TableCell>}
+              <TableRow key={i + 200} className="table__row">
+                {printData.collectionDate && (
+                  <TableCell className="table__cell">{row.date}</TableCell>
+                )}
 
                 {printData.collector && (
-                  <TableCell>
+                  <TableCell className="table__cell">
                     <Link to={``}>{row.collector}</Link>
                   </TableCell>
                 )}
 
                 {printData.requiredCollections && (
-                  <TableCell>{row.requiredCollections}</TableCell>
+                  <TableCell className="table__cell">
+                    {row.requiredCollections}
+                  </TableCell>
                 )}
 
                 {printData.collectionsDone && (
-                  <TableCell>{row.collectionsDone}</TableCell>
+                  <TableCell className="table__cell">
+                    {row.collectionsDone}
+                  </TableCell>
                 )}
 
                 {printData.areas && (
-                  <TableCell>{row.areas.join(" - ")}</TableCell>
+                  <TableCell className="table__cell">
+                    {row.areas.join(" - ")}
+                  </TableCell>
                 )}
 
-                <TableCell>
+                <TableCell className="table__cell">
                   <button
                     className="link"
                     onClick={() => handleShowRequestDetails(row.clientId)}
@@ -103,10 +122,7 @@ const CollectionHistoryTable = (props) => {
       </Table>
       {collectionTable && (
         <>
-          <TableWidget
-            isPending={isPending}
-            className="ongoing-collection-table"
-          >
+          <TableWidget isPending={isPending} className="table-widget--center">
             {collectionTable && (
               <>
                 <section className="widget__header">
@@ -120,8 +136,14 @@ const CollectionHistoryTable = (props) => {
                   </section>
                 </section>
 
-                <PrintTemplate title={`المحصل/ ${collectionTable.collector}`}>
-                  <OngoingCollectionTable tableData={collectionTable} />
+                <PrintTemplate
+                  title={`المحصل/ ${collectionTable.collector}`}
+                  footer={collectionTable.date}
+                >
+                  <PastCollectionTable
+                    tableData={collectionTable}
+                    isPrinting={isPrinting}
+                  />
                 </PrintTemplate>
               </>
             )}
@@ -144,7 +166,7 @@ const CollectionHistoryTable = (props) => {
           ></div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

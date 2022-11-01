@@ -1,5 +1,5 @@
-const TableRow = ({ children }) => {
-  return <tr>{children}</tr>;
+const TableRow = ({ className, children }) => {
+  return <tr className={`${className ? className : ""}`}>{children}</tr>;
 };
 
 export default TableRow;
