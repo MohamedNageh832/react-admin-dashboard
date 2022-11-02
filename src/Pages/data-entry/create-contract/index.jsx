@@ -13,7 +13,7 @@ const CreateContract = () => {
     <>
       <section className="pending-contracts">
         {(!data || data.length === 0) && (
-          <div className="widget--empty">
+          <div className="widget--empty fs-3">
             {isPending && <span>جار التحميل...</span>}
             {!isPending && <span>لا يوجد طلبات حاليا</span>}
           </div>

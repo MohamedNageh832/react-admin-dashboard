@@ -1,11 +1,16 @@
 .checkbox {
   position: relative;
   display: block;
-  margin-top: auto;
-  margin-bottom: auto;
+  overflow: hidden;
   width: 20px;
   height: 20px;
-  border-radius: 3px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.checkbox--sm {
+  width: 15px;
+  height: 15px;
 }
 
 .checkbox__input {
@@ -29,16 +34,22 @@
   justify-content: center;
   align-items: center;
   border: 2px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkbox__input:checked + .checkbox__ui,
+.checkbox--sm .checkbox__ui {
+  border-width: 1px;
 }
 
 .checkbox__ui::after {
   content: "";
   position: absolute;
-  top: calc(50% - 6px);
-  left: calc(50% - 3px);
+  top: 20%;
+  left: 35%;
   transform: rotate(45deg);
-  width: 4px;
-  height: 8px;
+  width: 20%;
+  height: 40%;
   opacity: 0;
   border-width: 0 2px 2px 0;
   border-style: solid;

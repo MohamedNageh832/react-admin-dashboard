@@ -30,10 +30,16 @@ const CurrentCollectionCard = ({ className, cardData }) => {
     setIsPending(false);
   };
 
+  const handlePrint = () => {
+    setIsPending(true);
+    setIsPrinting(true);
+  };
+
   useEffect(() => {
     if (!isPrinting) return;
 
     print();
+    setIsPending(false);
     setIsPrinting(false);
   }, [isPrinting]);
 
@@ -97,10 +103,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
               >
                 اغلاق
               </button>
-              <button
-                className="btn btn-link--secondary"
-                onClick={() => setIsPrinting(true)}
-              >
+              <button className="btn btn-link--secondary" onClick={handlePrint}>
                 اعادة طباعة
               </button>
             </section>

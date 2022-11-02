@@ -445,6 +445,19 @@ th {
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+@media (min-width: 1400px) {
+  html {
+    font-size: 20px;
+  }
+  :root {
+    --fs1: 16px;
+    --fs2: 20px;
+    --fs3: 24px;
+    --fs4: 32px;
+    --fs5: 40px;
+    --fs6: 48px;
+  }
+}
 @media (max-width: 768px) {
   :root {
     --fs1: 12px;
@@ -642,6 +655,10 @@ th {
   margin-left: var(--s1);
 }
 
+.col-1 {
+  width: 10%;
+}
+
 .flex-grow-2 {
   flex-grow: 2;
 }
@@ -680,6 +697,10 @@ th {
 
 .ml-2 {
   margin-left: var(--s2);
+}
+
+.col-2 {
+  width: 20%;
 }
 
 .flex-grow-3 {
@@ -722,6 +743,10 @@ th {
   margin-left: var(--s3);
 }
 
+.col-3 {
+  width: 30%;
+}
+
 .flex-grow-4 {
   flex-grow: 4;
 }
@@ -762,6 +787,10 @@ th {
   margin-left: var(--s4);
 }
 
+.col-4 {
+  width: 40%;
+}
+
 .flex-grow-5 {
   flex-grow: 5;
 }
@@ -800,6 +829,10 @@ th {
 
 .ml-5 {
   margin-left: var(--s5);
+}
+
+.col-5 {
+  width: 50%;
 }
 
 .text-center {
@@ -1008,8 +1041,16 @@ th {
   white-space: nowrap;
 }
 
+.table--no-min {
+  min-width: 0;
+}
+
 .table--layout-fixed {
   table-layout: fixed;
+}
+
+col:not(.table__checkbox) {
+  min-width: 120px;
 }
 
 .table__row {
@@ -1046,6 +1087,12 @@ th {
 .table__cell {
   height: 48px;
   padding: var(--s2) var(--s3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.table__cell:hover {
+  overflow: visible;
 }
 
 .table__cell--table {
@@ -1341,11 +1388,16 @@ th {
   align-items: stretch;
   row-gap: var(--s3);
   z-index: 4;
+  min-width: 25%;
   width: 400px;
   max-width: 90%;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: #fff;
+}
+
+.form__title {
+  font-size: var(--fs4);
 }
 
 .form__img {
@@ -1479,7 +1531,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .widget {
-  min-width: 0;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: #fff;
@@ -1634,7 +1685,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
   flex-grow: 1;
   flex-wrap: wrap;
   gap: var(--s2);
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .searchbar {
@@ -1659,6 +1710,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
 
 .sidebar {
   flex-shrink: 0;
+  min-width: 22vw;
   width: 300px;
   max-width: 80%;
   min-height: 100%;
@@ -1721,8 +1773,9 @@ input:invalid[focused=true] ~ .form__validation-msg {
   display: flex;
   flex-direction: column;
   gap: var(--s3);
+  flex-grow: 1;
   width: 300px;
-  max-width: 100%;
+  max-width: 300px;
   padding: var(--s2);
   border-radius: var(--mainBR);
   background-color: #fff;
@@ -1937,11 +1990,16 @@ input:invalid[focused=true] ~ .form__validation-msg {
 .checkbox {
   position: relative;
   display: block;
-  margin-top: auto;
-  margin-bottom: auto;
+  overflow: hidden;
   width: 20px;
   height: 20px;
-  border-radius: 3px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.checkbox--sm {
+  width: 15px;
+  height: 15px;
 }
 
 .checkbox__input {
@@ -1965,16 +2023,22 @@ input:invalid[focused=true] ~ .form__validation-msg {
   justify-content: center;
   align-items: center;
   border: 2px solid #ccc;
+  border-radius: 3px;
+}
+
+.checkbox__input:checked + .checkbox__ui,
+.checkbox--sm .checkbox__ui {
+  border-width: 1px;
 }
 
 .checkbox__ui::after {
   content: "";
   position: absolute;
-  top: calc(50% - 6px);
-  left: calc(50% - 3px);
+  top: 20%;
+  left: 35%;
   transform: rotate(45deg);
-  width: 4px;
-  height: 8px;
+  width: 20%;
+  height: 40%;
   opacity: 0;
   border-width: 0 2px 2px 0;
   border-style: solid;
@@ -2235,12 +2299,15 @@ thead .thead__space-in-print,
     z-index: 213;
   }
   table {
+    max-width: 100% !important;
     min-width: 0 !important;
   }
   table tr,
 table td {
     page-break-inside: avoid;
     page-break-after: auto;
+    overflow: visible !important;
+    text-overflow: clip;
   }
   table thead {
     display: table-header-group;
@@ -2248,8 +2315,9 @@ table td {
   table tfoot {
     display: table-footer-group;
   }
-  .table:not(.print-all) .table__heading:last-child,
-.table:not(.print-all) .table__cell:last-child,
+  table:not(.print-all-columns) .table__heading:last-child,
+table:not(.print-all-columns) .table__cell:last-child,
+table:not(.print-all-columns) col:last-child,
 .overlay,
 .controls {
     display: none;
@@ -2295,7 +2363,10 @@ table td {
     width: 30px;
     height: 30px;
   }
-  .print-checks .checkbox__input:checked + .checkbox__ui {
+  .checkbox--semi-checked:not(.checkbox--outlined) .checkbox__ui::after {
+    opacity: 0;
+  }
+  .checkbox__input:checked + .checkbox__ui {
     background-color: transparent;
   }
   .checkbox:not(.checkbox--outlined) .checkbox__input:checked + .checkbox__ui::after {

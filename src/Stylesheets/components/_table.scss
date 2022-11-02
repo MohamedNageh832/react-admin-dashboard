@@ -37,8 +37,16 @@
   white-space: nowrap;
 }
 
+.table--no-min {
+  min-width: 0;
+}
+
 .table--layout-fixed {
   table-layout: fixed;
+}
+
+col:not(.table__checkbox) {
+  min-width: 120px;
 }
 
 .table__row {
@@ -75,11 +83,13 @@
 .table__cell {
   height: 48px;
   padding: var(--s2) var(--s3);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-// .table__cell:not(:first-child) {
-//   width: 100%;
-// }
+.table__cell:hover {
+  overflow: visible;
+}
 
 .table__cell--table {
   padding-bottom: var(--s2);

@@ -168,6 +168,10 @@
   .ml-#{$i} {
     margin-left: var(--s#{$i});
   }
+
+  .col-#{$i} {
+    width: $i * 10%;
+  }
 }
 
 .text-center {

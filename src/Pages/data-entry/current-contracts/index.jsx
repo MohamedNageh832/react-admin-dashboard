@@ -7,6 +7,17 @@ import TableWidget from "../../../Components/table-widget";
 import TablePagination from "../../../Components/table/TablePagination";
 import x from "../../../Components/test copy";
 import useFetch from "../../../Hooks/useFetch";
+import { useMemo } from "react";
+
+const intialPrintData = {
+  contractSerial: true,
+  phone: true,
+  area: true,
+  services: true,
+  status: true,
+  receiptNumber: true,
+  collector: "",
+};
 
 const CurrentContracts = () => {
   // const {isPending, error, data} = useFetch();
@@ -18,15 +29,7 @@ const CurrentContracts = () => {
   const clientsNum = tableData.rows.length;
   const numberOfPages = Math.ceil(clientsNum / 20);
 
-  const [printData, setPrintData] = useState({
-    contractSerial: true,
-    phone: true,
-    area: true,
-    services: true,
-    status: true,
-    receiptNumber: true,
-    collector: "",
-  });
+  const [printData, setPrintData] = useState(intialPrintData);
 
   useEffect(() => {
     if (!isPrinting) return;
@@ -58,6 +61,34 @@ const CurrentContracts = () => {
     setIsPrinting(true);
   };
 
+  const handleHidePrintOptions = () => {
+    setPrintData(intialPrintData);
+
+    setShowPrintForm(false);
+  };
+
+  const printOptions = useMemo(
+    () => (
+      <>
+        <div className="overlay" onClick={handleHidePrintOptions}></div>
+        <PrintOptions
+          data={printData}
+          setData={setPrintData}
+          onSubmit={handlePrint}
+        />
+      </>
+    ),
+    [printData]
+  );
+
+  const currentContractsTable = useMemo(() => {
+    return (
+      <PrintTemplate title={`${clientsNum} عميل`}>
+        <CurrentContractsTable tableData={tableData} printData={printData} />
+      </PrintTemplate>
+    );
+  }, [tableData, isPrinting, showPrintForm]);
+
   return (
     <>
       <section className="space-between">
@@ -69,32 +100,21 @@ const CurrentContracts = () => {
           طباعة
         </button>
       </section>
-      {showPrintForm && (
-        <>
-          <div
-            className="overlay"
-            onClick={() => setShowPrintForm(false)}
-          ></div>
-          <PrintOptions
-            data={printData}
-            setData={setPrintData}
-            onSubmit={handlePrint}
-          />
-        </>
-      )}
+
+      {showPrintForm && printOptions}
+
       <Filter />
+
       <TableWidget isPending={isPending}>
         <section className="widget__header">
-          <h5 className="clients-num">{clientsNum} عميل</h5>
+          <h5 className="fs-2">{clientsNum} عميل</h5>
           <TablePagination
             numberOfPages={numberOfPages}
             onPageChange={handlePagination}
           />
         </section>
 
-        <PrintTemplate title={`${clientsNum} عميل`}>
-          <CurrentContractsTable tableData={tableData} printData={printData} />
-        </PrintTemplate>
+        {currentContractsTable}
       </TableWidget>
     </>
   );

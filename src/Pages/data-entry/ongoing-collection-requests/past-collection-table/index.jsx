@@ -17,9 +17,8 @@ const PastCollectionTable = (props) => {
   const { tableData } = props || {};
   const [data, setData] = useState(tableData);
   const [isPending, setIsPending] = useState(false);
-  const [visibleNestedTables, setVisibleNestedTables] = useState([]);
   const [nestedTables, setNestedTable] = useState([]);
-  const [showServicesTable, setShowServicesTable] = useState(false);
+  const [visibleNestedTables, setVisibleNestedTables] = useState([]);
 
   const AllIsChecked = data.rows.filter((el) => el.checked).length === 20;
   const someAreChecked = data.rows.filter((el) => el.checked).length !== 20;
@@ -46,7 +45,7 @@ const PastCollectionTable = (props) => {
     } else {
       const data = await ajax.post("", { clientId });
 
-      setVisibleNestedTables((prev) => [...prev, data]);
+      if (data) setVisibleNestedTables((prev) => [...prev, data]);
     }
 
     setIsPending(false);
@@ -87,7 +86,7 @@ const PastCollectionTable = (props) => {
 
   return (
     <div className="table-holder">
-      <Table className="print-all print-checks table--layout-fixed">
+      <Table className="print-all-columns table--layout-fixed">
         <colgroup>
           <col className="table__checkbox"></col>
           <col></col>
@@ -119,60 +118,58 @@ const PastCollectionTable = (props) => {
         <TableBody>
           {data.rows.length > 0 &&
             data.rows.map((row, i) => (
-              <Fragment key={i + 200}>
-                <TableRow className="table__row">
-                  <TableCell colSpan="7">
-                    <Table className="print-all table--layout-fixed">
-                      <colgroup>
-                        <col className="table__checkbox"></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                      </colgroup>
-                      <TableBody>
-                        <TableRow className="client-data">
-                          <TableCell className="table__cell table__cell--checkbox">
-                            <Checkbox
-                              checked={row.checked}
-                              className="checkbox--outlined"
-                              readOnly
-                            />
-                          </TableCell>
+              <TableRow key={i + 200} className="table__row">
+                <TableCell colSpan="7">
+                  <Table className="print-all-columns table--layout-fixed">
+                    <colgroup>
+                      <col className="table__checkbox"></col>
+                      <col></col>
+                      <col></col>
+                      <col></col>
+                      <col></col>
+                      <col></col>
+                      <col></col>
+                    </colgroup>
+                    <TableBody>
+                      <TableRow className="client-data">
+                        <TableCell className="table__cell table__cell--checkbox">
+                          <Checkbox
+                            checked={row.checked}
+                            className="checkbox--outlined"
+                            readOnly
+                          />
+                        </TableCell>
 
-                          <TableCell className="table__cell">
-                            <Link to={``}>{row.clientName}</Link>
-                          </TableCell>
+                        <TableCell className="table__cell">
+                          <Link to={``}>{row.clientName}</Link>
+                        </TableCell>
 
-                          <TableCell className="table__cell">
-                            {row.receiptNumber}
-                          </TableCell>
-                          <TableCell className="table__cell">
-                            {row.phone}
-                          </TableCell>
+                        <TableCell className="table__cell">
+                          {row.receiptNumber}
+                        </TableCell>
+                        <TableCell className="table__cell">
+                          {row.phone}
+                        </TableCell>
 
-                          <TableCell className="table__cell">
-                            {row.area}
-                          </TableCell>
-                          <TableCell className="table__cell">
-                            {row.addressDetails}
-                          </TableCell>
+                        <TableCell className="table__cell">
+                          {row.area}
+                        </TableCell>
+                        <TableCell className="table__cell">
+                          {row.addressDetails}
+                        </TableCell>
 
-                          <TableCell
-                            className="table__cell"
-                            onClick={() => handleNestedTable(row.clientId)}
-                          >
-                            {row.deserved}
-                          </TableCell>
-                        </TableRow>
-                        {getNestedTableData(row.clientId, i)}
-                      </TableBody>
-                    </Table>
-                  </TableCell>
-                </TableRow>
-              </Fragment>
+                        <TableCell
+                          className="table__cell"
+                          onClick={() => handleNestedTable(row.clientId)}
+                        >
+                          {row.deserved}
+                        </TableCell>
+                      </TableRow>
+                      {getNestedTableData(row.clientId, i)}
+                    </TableBody>
+                  </Table>
+                </TableCell>
+              </TableRow>
             ))}
         </TableBody>
       </Table>

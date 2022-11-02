@@ -57,6 +57,7 @@ thead .thead__space-in-print,
   }
 
   table {
+    max-width: 100% !important;
     min-width: 0 !important;
   }
 
@@ -64,6 +65,8 @@ thead .thead__space-in-print,
   table td {
     page-break-inside: avoid;
     page-break-after: auto;
+    overflow: visible !important;
+    text-overflow: clip;
   }
 
   table thead {
@@ -74,8 +77,9 @@ thead .thead__space-in-print,
     display: table-footer-group;
   }
 
-  .table:not(.print-all) .table__heading:last-child,
-  .table:not(.print-all) .table__cell:last-child,
+  table:not(.print-all-columns) .table__heading:last-child,
+  table:not(.print-all-columns) .table__cell:last-child,
+  table:not(.print-all-columns) col:last-child,
   .overlay,
   .controls {
     display: none;
@@ -132,7 +136,11 @@ thead .thead__space-in-print,
     height: 30px;
   }
 
-  .print-checks .checkbox__input:checked + .checkbox__ui {
+  .checkbox--semi-checked:not(.checkbox--outlined) .checkbox__ui::after {
+    opacity: 0;
+  }
+
+  .checkbox__input:checked + .checkbox__ui {
     background-color: transparent;
   }
 

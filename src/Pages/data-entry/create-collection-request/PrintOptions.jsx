@@ -18,6 +18,10 @@ const formChecboxes = [
     label: "المنطقة",
   },
   {
+    name: "addressDetails",
+    label: "العنوان بالتفصيل",
+  },
+  {
     name: "nestedTables",
     label: "اظهار تفاصيل المستحق",
   },

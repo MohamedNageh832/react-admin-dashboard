@@ -40,68 +40,97 @@ const CurrentContractsTable = (props) => {
 
   // Handle pagination
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          {printData.contractSerial && <th>{data.thead.contractSerial}</th>}
-          <th>{data.thead.clientName}</th>
-          {printData.phone && <th>{data.thead.phone}</th>}
-          {printData.area && <th>{data.thead.area}</th>}
-          {printData.services && <th>{data.thead.services}</th>}
-          {printData.status && <th>{data.thead.status}</th>}
-          {printData.receiptNumber && <th>{data.thead.receiptNumber}</th>}
+    <div className="table-holder">
+      <Table>
+        <TableHead>
+          <TableRow>
+            {printData.contractSerial && (
+              <th className="table__heading">{data.thead.contractSerial}</th>
+            )}
+            <th className="table__heading">{data.thead.clientName}</th>
+            {printData.phone && (
+              <th className="table__heading">{data.thead.phone}</th>
+            )}
+            {printData.area && (
+              <th className="table__heading">{data.thead.area}</th>
+            )}
+            {printData.services && (
+              <th className="table__heading">{data.thead.services}</th>
+            )}
+            {printData.status && (
+              <th className="table__heading">{data.thead.status}</th>
+            )}
+            {printData.receiptNumber && (
+              <th className="table__heading">{data.thead.receiptNumber}</th>
+            )}
 
-          <th>الخيارات</th>
-        </TableRow>
-      </TableHead>
+            <th className="table__heading">الخيارات</th>
+          </TableRow>
+        </TableHead>
 
-      <TableBody>
-        {data.rows.length > 0 &&
-          data.rows.map((row, i) => (
-            <TableRow key={i + 200}>
-              {printData.contractSerial && (
-                <TableCell>{row.contractSerial}</TableCell>
-              )}
+        <TableBody>
+          {data.rows.length > 0 &&
+            data.rows.map((row, i) => (
+              <TableRow key={i + 200} className="table__row">
+                {printData.contractSerial && (
+                  <TableCell className="table__cell">
+                    {row.contractSerial}
+                  </TableCell>
+                )}
 
-              <TableCell>
-                <Link
-                  className="link"
-                  to={`/staff/data-entry/get-client-Profile/${row.clientId}`}
-                >
-                  {row.clientName}
-                </Link>
-              </TableCell>
-
-              {printData.phone && <TableCell>{row.phone}</TableCell>}
-
-              {printData.area && <TableCell>{row.area}</TableCell>}
-
-              {printData.services && (
-                <TableCell>{row.services.join(" - ")}</TableCell>
-              )}
-
-              {printData.status && <TableCell>{row.status}</TableCell>}
-
-              {printData.receiptNumber && (
-                <TableCell>{row.receiptNumber}</TableCell>
-              )}
-              <TableCell>
-                <TableOptions>
-                  <Option icon={<EditOutlined />} onClick={handleEditServices}>
-                    تعديل الخدمات
-                  </Option>
-                  <Option
-                    icon={<CancelOutlined />}
-                    onClick={() => handleCancelContract(row.clientId)}
+                <TableCell className="table__cell">
+                  <Link
+                    className="link"
+                    to={`/staff/data-entry/get-client-Profile/${row.clientId}`}
                   >
-                    الغاء التعاقد
-                  </Option>
-                </TableOptions>
-              </TableCell>
-            </TableRow>
-          ))}
-      </TableBody>
-    </Table>
+                    {row.clientName}
+                  </Link>
+                </TableCell>
+
+                {printData.phone && (
+                  <TableCell className="table__cell">{row.phone}</TableCell>
+                )}
+
+                {printData.area && (
+                  <TableCell className="table__cell">{row.area}</TableCell>
+                )}
+
+                {printData.services && (
+                  <TableCell className="table__cell">
+                    {row.services.join(" - ")}
+                  </TableCell>
+                )}
+
+                {printData.status && (
+                  <TableCell className="table__cell">{row.status}</TableCell>
+                )}
+
+                {printData.receiptNumber && (
+                  <TableCell className="table__cell">
+                    {row.receiptNumber}
+                  </TableCell>
+                )}
+                <TableCell className="table__cell">
+                  <TableOptions>
+                    <Option
+                      icon={<EditOutlined />}
+                      onClick={handleEditServices}
+                    >
+                      تعديل الخدمات
+                    </Option>
+                    <Option
+                      icon={<CancelOutlined />}
+                      onClick={() => handleCancelContract(row.clientId)}
+                    >
+                      الغاء التعاقد
+                    </Option>
+                  </TableOptions>
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

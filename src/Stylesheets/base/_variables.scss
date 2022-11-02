@@ -37,6 +37,21 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+@media (min-width: 1400px) {
+  html {
+    font-size: 20px;
+  }
+
+  :root {
+    --fs1: 16px;
+    --fs2: 20px;
+    --fs3: 24px;
+    --fs4: 32px;
+    --fs5: 40px;
+    --fs6: 48px;
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --fs1: 12px;

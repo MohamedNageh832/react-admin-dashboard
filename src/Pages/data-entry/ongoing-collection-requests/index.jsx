@@ -2,13 +2,20 @@ import CurrentCollectionCard from "../components/current-collection-card";
 import Filter from "../../../Components/filter";
 import useFetch from "../../../Hooks/useFetch";
 import TableWidget from "../../../Components/table-widget";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import x from "../../../Components/test-history";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
 import CollectionHistoryTable from "../components/collection-history-table";
 import PrintOptions from "./PrintOptions";
-import { useEffect } from "react";
 import { BASE_URL } from "../../../utils/constants";
+
+const intialPrintData = {
+  collectionDate: true,
+  collector: true,
+  requiredCollections: true,
+  collectionsDone: true,
+  areas: true,
+};
 
 const OnGoingCollectionRequests = () => {
   const { isPending, error, data } = useFetch(
@@ -21,13 +28,7 @@ const OnGoingCollectionRequests = () => {
     tableData.rows.filter((el) => el.checked)
   );
 
-  const [printData, setPrintData] = useState({
-    collectionDate: true,
-    collector: true,
-    requiredCollections: true,
-    collectionsDone: true,
-    areas: true,
-  });
+  const [printData, setPrintData] = useState(intialPrintData);
 
   useEffect(() => {
     if (!isPrinting) return;
@@ -49,6 +50,34 @@ const OnGoingCollectionRequests = () => {
     setIsPrinting(true);
   };
 
+  const handleHidePrintOptions = () => {
+    setPrintData(intialPrintData);
+
+    setShowPrintForm(false);
+  };
+
+  const printOptions = useMemo(
+    () => (
+      <>
+        <div className="overlay" onClick={handleHidePrintOptions}></div>
+        <PrintOptions
+          data={printData}
+          setData={setPrintData}
+          onSubmit={handlePrint}
+        />
+      </>
+    ),
+    [printData]
+  );
+
+  const collectionHistoryTable = useMemo(() => {
+    return (
+      <PrintTemplate>
+        <CollectionHistoryTable tableData={tableData} printData={printData} />
+      </PrintTemplate>
+    );
+  }, [tableData, isPrinting, showPrintForm]);
+
   return (
     <>
       <h2 className="heading-2">طلبات التحصيل الجارية</h2>
@@ -66,33 +95,13 @@ const OnGoingCollectionRequests = () => {
         </button>
       </section>
 
-      {showPrintForm && (
-        <>
-          <div
-            className="overlay"
-            onClick={() => setShowPrintForm(false)}
-          ></div>
-          <PrintOptions
-            data={printData}
-            setData={setPrintData}
-            onSubmit={handlePrint}
-          />
-        </>
-      )}
+      {showPrintForm && printOptions}
 
       <Filter />
 
       <TableWidget isPending={isPending}>
         {error && <div>حدث خطأ!</div>}
-
-        {tableData && (
-          <PrintTemplate>
-            <CollectionHistoryTable
-              tableData={tableData}
-              printData={printData}
-            />
-          </PrintTemplate>
-        )}
+        {tableData && collectionHistoryTable}
       </TableWidget>
     </>
   );

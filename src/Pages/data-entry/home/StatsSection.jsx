@@ -45,8 +45,8 @@ const StatsSection = () => {
 
   return (
     <section className="widget stats-section">
-      {isPending && <div>جار التحميل...</div>}
-      {error && <div>حدث خطأ!</div>}
+      {isPending && <div className="fs-3">جار التحميل...</div>}
+      {error && <div className="fs-3">حدث خطأ!</div>}
       {data &&
         cardProps.map((props, i) => (
           <StatsCard key={i} props={props} data={data[props.data]} />

@@ -24,13 +24,19 @@ const CreateCollectionRequestTable = (props) => {
   const [visibleNestedTables, setVisibleNestedTables] = useState([]);
 
   const [colSpan, setColSpan] = useState(Object.keys(data.thead).length + 2);
+
   const ajax = Ajax();
   // edit this
   const AllIsSelected = selected.length === data.rows.length;
 
   useEffect(() => {
     const adjustForPrinting = async () => {
-      const newColSpan = Object.keys(data.thead).length + 1;
+      const alwaysVisibleColumns = 3;
+      const { nestedTables, ...printControlledColumns } = printData;
+      const visibleColumnsCount = Object.values(printControlledColumns).filter(
+        (el) => el === true
+      ).length;
+      const newColSpan = visibleColumnsCount + alwaysVisibleColumns;
       setColSpan(() => newColSpan);
 
       if (printData.nestedTables) {
@@ -47,15 +53,21 @@ const CreateCollectionRequestTable = (props) => {
       adjustForPrinting();
     }
 
-    const adjustColSpanAfter = async () => {
-      const newColSpan = Object.keys(data.thead).length + 2;
+    const handleAfterPrint = async () => {
+      const alwaysVisibleColumns = 4;
+      const { nestedTables, ...printControlledColumns } = printData;
+      const visibleColumnsCount = Object.values(printControlledColumns).filter(
+        (el) => el === true
+      ).length;
+
+      const newColSpan = visibleColumnsCount + alwaysVisibleColumns;
       setColSpan(() => newColSpan);
       await setPrintReady(() => false);
     };
 
-    window.addEventListener("afterprint", adjustColSpanAfter);
+    window.addEventListener("afterprint", handleAfterPrint);
     return () => {
-      window.removeEventListener("afterprint", adjustColSpanAfter);
+      window.removeEventListener("afterprint", handleAfterPrint);
     };
   }, [isPrinting]);
 
@@ -147,17 +159,21 @@ const CreateCollectionRequestTable = (props) => {
     [visibleNestedTables, isPending, printData]
   );
 
+  const tableIsLarge = isPrinting && printData.addressDetails === true;
+
   // Handle pagination
   return (
     <div className="table-holder">
-      <Table className="table--layout-fixed">
+      <Table className={`table--layout-fixed ${tableIsLarge ? "fs-1" : ""}`}>
         <colgroup>
           <col className="table__checkbox"></col>
-          <col></col>
-          <col></col>
-          <col></col>
-          <col></col>
-          <col></col>
+          {printData.date && <col className="col-2"></col>}
+          <col className="col-3"></col>
+          {printData.phone && <col className="col-3"></col>}
+          {printData.area && <col className="col-2"></col>}
+          {printData.addressDetails && <col className="col-5"></col>}
+          <col className="col-2"></col>
+          <col className="col-4"></col>
         </colgroup>
 
         <TableHead>
@@ -176,6 +192,9 @@ const CreateCollectionRequestTable = (props) => {
             {printData.area && (
               <th className="table__heading">{data.thead.area}</th>
             )}
+            {printData.addressDetails && (
+              <th className="table__heading">{data.thead.addressDetails}</th>
+            )}
             <th className="table__heading">{data.thead.deserved}</th>
 
             <th className="table__heading">الملاحظات</th>
@@ -191,11 +210,15 @@ const CreateCollectionRequestTable = (props) => {
                     <Table className="dont-break-inside table--layout-fixed">
                       <colgroup>
                         <col className="table__checkbox"></col>
-                        <col className="table__cell"></col>
-                        <col className="table__cell"></col>
-                        <col className="table__cell"></col>
-                        <col className="table__cell"></col>
-                        <col className="table__cell"></col>
+                        {printData.date && <col className="col-2"></col>}
+                        <col className="col-3"></col>
+                        {printData.phone && <col className="col-3"></col>}
+                        {printData.area && <col className="col-2"></col>}
+                        {printData.addressDetails && (
+                          <col className="col-5"></col>
+                        )}
+                        <col className="col-2"></col>
+                        <col className="col-4"></col>
                       </colgroup>
                       <TableBody>
                         <TableRow>
@@ -229,6 +252,12 @@ const CreateCollectionRequestTable = (props) => {
                           {printData.area && (
                             <TableCell className="table__cell">
                               {row.area}
+                            </TableCell>
+                          )}
+
+                          {printData.addressDetails && (
+                            <TableCell className="table__cell">
+                              {row.addressDetails}
                             </TableCell>
                           )}
 

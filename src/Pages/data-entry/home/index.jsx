@@ -7,6 +7,7 @@ import x from "../../../Components/test copy";
 import cardData from "../../../Components/cardData";
 import LatestContractsTable from "../components/latest-contracts-table";
 import ClientProfile from "../../global/client-profile";
+import TableWidget from "../../../Components/table-widget";
 
 const DataEntryHome = () => {
   // const { isPending, error, data } = useFetch(
@@ -20,19 +21,22 @@ const DataEntryHome = () => {
     <>
       <StatsSection />
       <section className="widgets-holder">
-        <section className="widget latest-contracts">
-          <div className="widget__header">
-            <h3 className="widget__title--md">احدث التعاقدات</h3>
-            <Link className="link" to="/staff/dataentry/currentContracts">
-              المزيد
-            </Link>
-          </div>
-          {isPending && <div>جار التحميل...</div>}
-          {error && <div>حدث خطأ!</div>}
+        <TableWidget className="latest-contracts">
+          <WidgetHeader
+            className="h3"
+            linkTo="/staff/dataentry/currentContracts"
+          >
+            احدث التعاقدات
+          </WidgetHeader>
+          {isPending && <div className="fs-3">جار التحميل...</div>}
+          {error && <div className="fs-3">حدث خطأ!</div>}
           {data && <LatestContractsTable tableData={data} />}
-        </section>
+        </TableWidget>
         <section className="widget ongoing-collections">
-          <WidgetHeader linkTo="/staff/dataentry/ongoingcollectionrequests">
+          <WidgetHeader
+            className="h4"
+            linkTo="/staff/dataentry/ongoingcollectionrequests"
+          >
             طلبات التحصيل الجارية
           </WidgetHeader>
           <section className="current-collections">

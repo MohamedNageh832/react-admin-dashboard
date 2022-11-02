@@ -14,34 +14,40 @@ const LatestContractsTable = (props) => {
   const { tableData: data } = props;
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <th>{data.thead.contractSerial}</th>
-          <th>{data.thead.clientName}</th>
-          <th>{data.thead.phone}</th>
-          <th>{data.thead.area}</th>
-          <th>{data.thead.services}</th>
-        </TableRow>
-      </TableHead>
+    <div className="table-holder">
+      <Table className="table--no-min">
+        <TableHead>
+          <TableRow>
+            <th className="table__heading">{data.thead.contractSerial}</th>
+            <th className="table__heading">{data.thead.clientName}</th>
+            <th className="table__heading">{data.thead.phone}</th>
+            <th className="table__heading">{data.thead.area}</th>
+            <th className="table__heading">{data.thead.services}</th>
+          </TableRow>
+        </TableHead>
 
-      <TableBody>
-        {data.rows.length > 0 &&
-          data.rows.map((row, i) => (
-            <TableRow key={i + 200}>
-              <TableCell>{row.contractSerial}</TableCell>
+        <TableBody>
+          {data.rows.length > 0 &&
+            data.rows.map((row, i) => (
+              <TableRow key={i + 200} className="table__row">
+                <TableCell className="table__cell">
+                  {row.contractSerial}
+                </TableCell>
 
-              <TableCell>
-                <Link to={``}>{row.clientName}</Link>
-              </TableCell>
+                <TableCell className="table__cell">
+                  <Link to={``}>{row.clientName}</Link>
+                </TableCell>
 
-              <TableCell>{row.phone}</TableCell>
-              <TableCell>{row.area}</TableCell>
-              <TableCell>{row.services.join(" - ")}</TableCell>
-            </TableRow>
-          ))}
-      </TableBody>
-    </Table>
+                <TableCell className="table__cell">{row.phone}</TableCell>
+                <TableCell className="table__cell">{row.area}</TableCell>
+                <TableCell className="table__cell">
+                  {row.services.join(" - ")}
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

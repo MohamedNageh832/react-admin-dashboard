@@ -12,6 +12,15 @@ import PrintOptions from "./PrintOptions";
 import x from "../../../Components/test";
 import { useMemo } from "react";
 
+const intialPrintData = {
+  date: true,
+  phone: true,
+  area: true,
+  addressDetails: true,
+  nestedTables: false,
+  collector: "",
+};
+
 const CreateCollectionRequest = () => {
   const ajax = Ajax();
   const { isPending, error, data } = useFetch("");
@@ -26,13 +35,7 @@ const CreateCollectionRequest = () => {
 
   const [printReady, setPrintReady] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
-  const [printData, setPrintData] = useState({
-    date: true,
-    phone: true,
-    area: true,
-    nestedTables: false,
-    collector: "",
-  });
+  const [printData, setPrintData] = useState(intialPrintData);
 
   const handlePrint = (e) => {
     e.preventDefault();
@@ -62,10 +65,16 @@ const CreateCollectionRequest = () => {
     const data = await ajax.post({ page: currentPage });
   };
 
+  const handleHidePrintOptions = () => {
+    setPrintData(intialPrintData);
+
+    setShowPrintForm(false);
+  };
+
   const printOptions = useMemo(
     () => (
       <>
-        <div className="overlay" onClick={() => setShowPrintForm(false)}></div>
+        <div className="overlay" onClick={handleHidePrintOptions}></div>
         {!isPrinting && (
           <PrintOptions
             data={printData}
@@ -89,7 +98,7 @@ const CreateCollectionRequest = () => {
     () => (
       <TableWidget isPending={isPending}>
         <section className="widget__header">
-          <h5 className="clients-num">{clientsNum} عميل</h5>
+          <h5 className="fs-2">{clientsNum} عميل</h5>
           <TablePagination
             numberOfPages={pages}
             onPageChange={handlePagination}
@@ -108,7 +117,7 @@ const CreateCollectionRequest = () => {
         </PrintTemplate>
       </TableWidget>
     ),
-    [data, selected, isPrinting]
+    [data, selected, isPrinting, showPrintForm]
   );
 
   useEffect(() => {

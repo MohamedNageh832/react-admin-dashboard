@@ -4,11 +4,16 @@
   align-items: stretch;
   row-gap: var(--s3);
   z-index: 4;
+  min-width: 25%;
   width: 400px;
   max-width: 90%;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: #fff;
+}
+
+.form__title {
+  font-size: var(--fs4);
 }
 
 .form__img {
