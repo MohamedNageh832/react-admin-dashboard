@@ -72,6 +72,11 @@
   font-weight: bold;
 }
 
+.text-ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .link {
   border: none;
   background-color: inherit;

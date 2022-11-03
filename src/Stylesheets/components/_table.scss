@@ -81,14 +81,43 @@ col:not(.table__checkbox) {
 }
 
 .table__cell {
+  position: relative;
   height: 48px;
   padding: var(--s2) var(--s3);
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.table__cell:hover {
-  overflow: visible;
+.table__cell--ellipses:hover::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.7);
+  animation: fadeIn 0.5s forwards;
+}
+
+.table__cell--ellipses:hover::after {
+  content: attr(data-cell);
+  position: absolute;
+  top: -4px;
+  right: 100%;
+  z-index: 1;
+  padding: var(--s3);
+  border-radius: var(--mainBR);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: var(--fs2);
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .table__cell--table {
@@ -157,18 +186,31 @@ col:not(.table__checkbox) {
 .table__serial {
   position: absolute;
   top: -16px;
-  right: 122%;
+  right: 100%;
   z-index: 1;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
+  animation: scaleFade 0.5s forwards;
+}
+
+@keyframes scaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .table__serial::after {
   content: "";
   position: absolute;
-  top: 39px;
+  top: 36px;
   right: -10px;
   border-width: 5px;
   border-style: solid;
@@ -178,12 +220,11 @@ col:not(.table__checkbox) {
 .table__row:nth-child(n + 18) .table__serial {
   top: auto;
   bottom: 8px;
-  right: 122%;
 }
 
 .table__row:nth-child(n + 18) .table__serial::after {
   top: auto;
-  bottom: 14px;
+  bottom: 10px;
 }
 
 .serial__close {

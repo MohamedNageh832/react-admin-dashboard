@@ -36,12 +36,14 @@
 .btn-underlined {
   padding-bottom: var(--s2);
   border-bottom: 2px solid #000;
+  font-size: var(--s3);
 }
 
 .btn-underlined--blue {
   padding-bottom: var(--s2);
   border-bottom: 2px solid var(--blue);
   color: var(--blue);
+  font-size: var(--s3);
 }
 
 .btn-link {

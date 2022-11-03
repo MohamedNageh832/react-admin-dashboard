@@ -72,10 +72,14 @@ const CreateCollectionRequestTable = (props) => {
   }, [isPrinting]);
 
   const handleSelectAll = () => {
-    if (AllIsSelected) {
-      setSelected([]);
+    if (!AllIsSelected) {
+      const newSelected = data.rows.map((el) => ({
+        clientId: el.clientId,
+      }));
+
+      setSelected(newSelected);
     } else {
-      setSelected(data.rows);
+      setSelected([]);
     }
   };
 
@@ -161,7 +165,6 @@ const CreateCollectionRequestTable = (props) => {
 
   const tableIsLarge = isPrinting && printData.addressDetails === true;
 
-  // Handle pagination
   return (
     <div className="table-holder">
       <Table className={`table--layout-fixed ${tableIsLarge ? "fs-1" : ""}`}>
@@ -256,8 +259,13 @@ const CreateCollectionRequestTable = (props) => {
                           )}
 
                           {printData.addressDetails && (
-                            <TableCell className="table__cell">
-                              {row.addressDetails}
+                            <TableCell
+                              className="table__cell table__cell--ellipses"
+                              data-cell={row.addressDetails}
+                            >
+                              <p className="w-100 text-ellipses">
+                                {row.addressDetails}
+                              </p>
                             </TableCell>
                           )}
 
@@ -276,6 +284,7 @@ const CreateCollectionRequestTable = (props) => {
                                 className="table__input"
                                 onBlur={() => handleEditNotes(row.clientId)}
                                 disabled={!activeInputs}
+                                required
                               />
                             </form>
                           </TableCell>

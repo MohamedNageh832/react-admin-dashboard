@@ -1,7 +1,7 @@
 import CurrentCollectionCard from "../components/current-collection-card";
 import Filter from "../../../Components/filter";
 import useFetch from "../../../Hooks/useFetch";
-import TableWidget from "../../../Components/table-widget";
+import LoaderWidget from "../../../Components/loader-widget";
 import { useState, useEffect, useMemo } from "react";
 import x from "../../../Components/test-history";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
@@ -99,10 +99,10 @@ const OnGoingCollectionRequests = () => {
 
       <Filter />
 
-      <TableWidget isPending={isPending}>
+      <LoaderWidget isPending={isPending}>
         {error && <div>حدث خطأ!</div>}
         {tableData && collectionHistoryTable}
-      </TableWidget>
+      </LoaderWidget>
     </>
   );
 };

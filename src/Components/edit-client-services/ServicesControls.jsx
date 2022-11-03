@@ -1,10 +1,11 @@
 import deepClone from "../../utils/deepClone";
 
-const ServicesControls = ({ services, setValues, setShowList }) => {
-  const handleSave = () => {
+const ServicesControls = ({ services, onSave, isPending, setShowList }) => {
+  const handleSave = async () => {
     const servicesClone = deepClone(services);
 
-    setValues((prev) => ({ ...prev, services: servicesClone }));
+    const newData = { ...services, services: servicesClone };
+    await onSave(newData);
     setShowList(false);
   };
 

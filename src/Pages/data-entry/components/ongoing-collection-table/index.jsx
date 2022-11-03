@@ -27,18 +27,6 @@ const OngoingCollectionTable = (props) => {
   const AllIsChecked = data.rows.filter((el) => el.checked).length === 20;
   const someAreChecked = selected.length > 0;
 
-  const handleSelectAll = () => {
-    if (selected.length === 0) {
-      const newSelected = data.rows.map((el) => ({
-        clientId: el.clientId,
-      }));
-
-      setSelected(newSelected);
-    } else {
-      setSelected([]);
-    }
-  };
-
   const handleNestedTable = async (clientId) => {
     setIsPending(true);
     const dataById = nestedTables.filter((el) => el.clientId === clientId);
@@ -100,7 +88,7 @@ const OngoingCollectionTable = (props) => {
 
   return (
     <div className="table-holder">
-      <Table className="print-all">
+      <Table className="table--layout-fixed print-all">
         <colgroup>
           <col className="table__checkbox"></col>
           <col></col>
@@ -116,7 +104,7 @@ const OngoingCollectionTable = (props) => {
               <Checkbox
                 checked={AllIsChecked}
                 className={someAreChecked ? "checkbox--semi-checked" : ""}
-                onChange={handleSelectAll}
+                readOnly
               />
             </th>
             <th className="table__heading">{data.thead.date}</th>
@@ -131,7 +119,7 @@ const OngoingCollectionTable = (props) => {
           {data.rows.length > 0 &&
             data.rows.map((row, i) => (
               <TableRow key={i + 200} className="table__row">
-                <TableCell colSpan="7">
+                <TableCell colSpan="6">
                   <Table className="print-all table--layout-fixed">
                     <colgroup>
                       <col className="table__checkbox"></col>
@@ -144,12 +132,11 @@ const OngoingCollectionTable = (props) => {
 
                     <TableBody>
                       <TableRow className="client-data">
-                        <TableCell className="table__cell table__checkbox">
+                        <TableCell className="table__cell table__checkbox pos-relative">
                           <SerialCheckbox
                             clientData={row}
                             selected={selected}
                             setSelected={setSelected}
-                            readOnly
                           />
                         </TableCell>
 

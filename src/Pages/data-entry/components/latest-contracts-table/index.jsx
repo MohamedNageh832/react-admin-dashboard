@@ -1,18 +1,11 @@
-import TablePagination from "../../../../Components/table/TablePagination";
-import { useState } from "react";
 import Table from "../../../../Components/table";
 import TableBody from "../../../../Components/table/TableBody";
 import TableCell from "../../../../Components/table/TableCell";
 import TableHead from "../../../../Components/table/TableHead";
 import TableRow from "../../../../Components/table/TableRow";
-import Ajax from "../../../../utils/Ajax";
 import { Link } from "react-router-dom";
 
-const ajax = Ajax();
-
-const LatestContractsTable = (props) => {
-  const { tableData: data } = props;
-
+const LatestContractsTable = ({ tableData: data }) => {
   return (
     <div className="table-holder">
       <Table className="table--no-min">

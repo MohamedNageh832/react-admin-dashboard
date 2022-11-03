@@ -10,9 +10,7 @@ const EasyPrint = ({ children }) => {
 
     window.print();
 
-    const tablesToBeHidden = Array.from(
-      document.querySelectorAll(".table-widget")
-    );
+    const tablesToBeHidden = Array.from(document.querySelectorAll(".print"));
 
     tablesToBeHidden.forEach((el) => {
       el.style.display = "block";
@@ -24,9 +22,7 @@ const EasyPrint = ({ children }) => {
     if (isPrinting) {
       let totalHeight = 0;
 
-      const tablesToBeHidden = Array.from(
-        document.querySelectorAll(".table-widget")
-      );
+      const tablesToBeHidden = Array.from(document.querySelectorAll(".print"));
 
       tablesToBeHidden.forEach((el) => {
         if (!el.contains(wrapperRef.current)) el.style.display = "none";

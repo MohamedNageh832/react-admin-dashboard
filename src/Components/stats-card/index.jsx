@@ -7,8 +7,8 @@ const StatsCard = ({ props, data }) => {
       >
         {props.icon}
       </section>
-      <section className="card__body">
-        <small className="text-sec">{props.title}</small>
+      <section className="stats-card__body">
+        <small className="text--secondary">{props.title}</small>
         <span className="card__data">{data}</span>
       </section>
     </div>

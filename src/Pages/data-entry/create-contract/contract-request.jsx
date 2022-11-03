@@ -1,37 +1,44 @@
 import { useState } from "react";
 import ContractForm from "../../../Components/contract-form";
+import LoaderWidget from "../../../Components/loader-widget";
+import Ajax from "../../../utils/Ajax";
+
+const x = {
+  sender: "",
+  clientName: "",
+  phone: "",
+  services: [],
+  area: "",
+};
 
 const ContractRequest = ({ data }) => {
-  const { clientName, sender, phone, services, address, clientId } = data || {};
+  const ajax = Ajax();
+  const [isPending, setIsPending] = useState(false);
+  const { clientName, sender, phone, services, area, clientId } = data || {};
   const [showContractForm, setShowContractForm] = useState(false);
 
-  const handleCompleteData = () => {};
+  const handleCancelContract = async () => {
+    setIsPending(true);
+    const data = await ajax.post("", { clientId });
 
-  const handleCancelContract = () => {};
-
-  const x = {
-    sender: "",
-    clientName: "",
-    phone: "",
-    services: [],
-    area: "",
+    setIsPending(false);
   };
 
   return (
     <>
-      <section className="contract-request">
-        <small className="text--secondary">محمد</small>
+      <LoaderWidget isPending={isPending} className="contract-request">
+        <small className="text--secondary fs-2">{sender}</small>
         <section className="contract-request__section contract-request__basic">
-          <h4>محمد حسن ابراهيم</h4>
-          <p className="text--secondary">0122333123</p>
+          <h4 className="h4">{clientName}</h4>
+          <p className="text--secondary fs-2">{phone}</p>
         </section>
         <section className="contract-request__section">
-          <h5>الخدمة / الخدمات</h5>
-          <p className="text--secondary">جمع منزلي</p>
+          <h5 className="h5">الخدمة / الخدمات</h5>
+          <p className="text--secondary fs-2">{services.join(" - ")}</p>
         </section>
         <section className="contract-request__section">
-          <h5>العنوان</h5>
-          <p className="text--secondary">حي العقاد</p>
+          <h5 className="h5">العنوان</h5>
+          <p className="text--secondary fs-2">{area}</p>
         </section>
         <section className="flex gap-3">
           <button
@@ -47,7 +54,7 @@ const ContractRequest = ({ data }) => {
             إلغاء
           </button>
         </section>
-      </section>
+      </LoaderWidget>
       {showContractForm && (
         <ContractForm data={data} setShowForm={setShowContractForm} />
       )}

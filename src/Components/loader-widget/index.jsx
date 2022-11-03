@@ -1,6 +1,6 @@
-const TableWidget = ({ isPending, className, children }) => {
+const LoaderWidget = ({ isPending, className, children }) => {
   return (
-    <section className={`widget table-widget ${className ? className : ""}`}>
+    <section className={`widget loader-widget ${className ? className : ""}`}>
       {isPending && (
         <div className="overlay overlay--loading">
           <span className="spinner"></span>
@@ -11,4 +11,4 @@ const TableWidget = ({ isPending, className, children }) => {
   );
 };
 
-export default TableWidget;
+export default LoaderWidget;

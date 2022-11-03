@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TableWidget from "../../../../Components/table-widget";
+import LoaderWidget from "../../../../Components/loader-widget";
 import Ajax from "../../../../utils/Ajax";
 import OngoingCollectionTable from "../ongoing-collection-table";
 import x from "../../../../Components/test";
@@ -14,7 +14,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
   const [showTable, setShowTable] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
-  const { clientsNum, date, collector, area, clientId } = cardData || {};
+  const { clientsNum, date, collector, areas, clientId } = cardData || {};
   const [collectionTable, setCollectionTable] = useState(x);
 
   const numberOfPages = Math.ceil(clientsNum / 20);
@@ -68,14 +68,14 @@ const CurrentCollectionCard = ({ className, cardData }) => {
 
           <li className="card__group">
             <span className="text--secondary">المنطقة</span>
-            <p className="card__content mt-2">{area}</p>
+            <p className="card__content mt-2">{areas.join(" - ")}</p>
           </li>
         </ul>
       </button>
 
       {showTable && (
         <>
-          <TableWidget isPending={isPending} className="table-widget--center">
+          <LoaderWidget isPending={isPending} className="widget--center">
             {collectionTable && (
               <>
                 <section className="widget__header">
@@ -107,7 +107,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
                 اعادة طباعة
               </button>
             </section>
-          </TableWidget>
+          </LoaderWidget>
           <div className="overlay" onClick={() => setShowTable(false)}></div>
         </>
       )}

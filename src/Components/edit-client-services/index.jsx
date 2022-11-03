@@ -6,7 +6,7 @@ import EditServicesTable from "./EditServicesTable";
 import ServicesControls from "./ServicesControls";
 
 const EditClientServices = (props) => {
-  const { clientName, servicesData, setValues, setShowList } = props;
+  const { clientName, servicesData, onSave, setShowList } = props || {};
 
   const [errors, setErrors] = useState({
     validServices: true,
@@ -68,7 +68,7 @@ const EditClientServices = (props) => {
 
         <ServicesControls
           services={services}
-          setValues={setValues}
+          onSave={onSave}
           setShowList={setShowList}
         />
       </section>

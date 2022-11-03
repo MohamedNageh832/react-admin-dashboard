@@ -1,7 +1,7 @@
 const Complaints = () => {
   return (
     <section className="widget">
-      <span>قريبا...</span>
+      <span className="fs-3">قريبا...</span>
     </section>
   );
 };

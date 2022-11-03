@@ -3,7 +3,7 @@ import CurrentContractsTable from "../../../Components/current-contracts-table";
 import PrintOptions from "./PrintOptions";
 import Filter from "../../../Components/filter";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
-import TableWidget from "../../../Components/table-widget";
+import LoaderWidget from "../../../Components/loader-widget";
 import TablePagination from "../../../Components/table/TablePagination";
 import x from "../../../Components/test copy";
 import useFetch from "../../../Hooks/useFetch";
@@ -105,7 +105,7 @@ const CurrentContracts = () => {
 
       <Filter />
 
-      <TableWidget isPending={isPending}>
+      <LoaderWidget isPending={isPending}>
         <section className="widget__header">
           <h5 className="fs-2">{clientsNum} عميل</h5>
           <TablePagination
@@ -115,7 +115,7 @@ const CurrentContracts = () => {
         </section>
 
         {currentContractsTable}
-      </TableWidget>
+      </LoaderWidget>
     </>
   );
 };

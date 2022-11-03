@@ -2,7 +2,7 @@ import Filter from "../../../Components/filter";
 import useFetch from "../../../Hooks/useFetch";
 import CreateCollectionRequestTable from "../../../Components/create-collection-request-table";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
-import TableWidget from "../../../Components/table-widget";
+import LoaderWidget from "../../../Components/loader-widget";
 import { useState } from "react";
 import deepClone from "../../../utils/deepClone";
 import { useEffect } from "react";
@@ -96,7 +96,7 @@ const CreateCollectionRequest = () => {
 
   const clientsTable = useMemo(
     () => (
-      <TableWidget isPending={isPending}>
+      <LoaderWidget isPending={isPending}>
         <section className="widget__header">
           <h5 className="fs-2">{clientsNum} عميل</h5>
           <TablePagination
@@ -115,7 +115,7 @@ const CreateCollectionRequest = () => {
             setPrintReady={setPrintReady}
           />
         </PrintTemplate>
-      </TableWidget>
+      </LoaderWidget>
     ),
     [data, selected, isPrinting, showPrintForm]
   );

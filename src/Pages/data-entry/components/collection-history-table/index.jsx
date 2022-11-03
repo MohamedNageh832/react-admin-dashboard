@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 import PrintTemplate, {
   print,
 } from "../../../../Components/print/PrintTemplate";
-import OngoingCollectionTable from "../ongoing-collection-table";
-import TableWidget from "../../../../Components/table-widget";
+import LoaderWidget from "../../../../Components/loader-widget";
 import x from "../../../../Components/past-collections";
 import TablePagination from "../../../../Components/table/TablePagination";
 import PastCollectionTable from "../../ongoing-collection-requests/past-collection-table";
@@ -122,7 +121,7 @@ const CollectionHistoryTable = (props) => {
       </Table>
       {collectionTable && (
         <>
-          <TableWidget isPending={isPending} className="table-widget--center">
+          <LoaderWidget isPending={isPending} className="widget--center">
             {collectionTable && (
               <>
                 <section className="widget__header">
@@ -159,7 +158,7 @@ const CollectionHistoryTable = (props) => {
                 اغلاق
               </button>
             </section>
-          </TableWidget>
+          </LoaderWidget>
           <div
             className="overlay"
             onClick={() => setCollectionTable(null)}

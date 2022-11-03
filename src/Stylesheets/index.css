@@ -541,6 +541,11 @@ th {
   font-weight: bold;
 }
 
+.text-ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .link {
   border: none;
   background-color: inherit;
@@ -928,12 +933,14 @@ th {
 .btn-underlined {
   padding-bottom: var(--s2);
   border-bottom: 2px solid #000;
+  font-size: var(--s3);
 }
 
 .btn-underlined--blue {
   padding-bottom: var(--s2);
   border-bottom: 2px solid var(--blue);
   color: var(--blue);
+  font-size: var(--s3);
 }
 
 .btn-link {
@@ -1085,16 +1092,55 @@ col:not(.table__checkbox) {
 }
 
 .table__cell {
+  position: relative;
   height: 48px;
   padding: var(--s2) var(--s3);
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.table__cell:hover {
-  overflow: visible;
+.table__cell--ellipses:hover::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.7);
+  -webkit-animation: fadeIn 0.5s forwards;
+          animation: fadeIn 0.5s forwards;
 }
 
+.table__cell--ellipses:hover::after {
+  content: attr(data-cell);
+  position: absolute;
+  top: -4px;
+  right: 100%;
+  z-index: 1;
+  padding: var(--s3);
+  border-radius: var(--mainBR);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: var(--fs2);
+  -webkit-animation: fadeIn 0.5s forwards;
+          animation: fadeIn 0.5s forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .table__cell--table {
   padding-bottom: var(--s2);
 }
@@ -1161,18 +1207,41 @@ col:not(.table__checkbox) {
 .table__serial {
   position: absolute;
   top: -16px;
-  right: 122%;
+  right: 100%;
   z-index: 1;
   padding: var(--s3);
   border-radius: var(--mainBR);
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
+  -webkit-animation: scaleFade 0.5s forwards;
+          animation: scaleFade 0.5s forwards;
 }
 
+@-webkit-keyframes scaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 .table__serial::after {
   content: "";
   position: absolute;
-  top: 39px;
+  top: 36px;
   right: -10px;
   border-width: 5px;
   border-style: solid;
@@ -1182,12 +1251,11 @@ col:not(.table__checkbox) {
 .table__row:nth-child(n+18) .table__serial {
   top: auto;
   bottom: 8px;
-  right: 122%;
 }
 
 .table__row:nth-child(n+18) .table__serial::after {
   top: auto;
-  bottom: 14px;
+  bottom: 10px;
 }
 
 .serial__close {
@@ -1262,15 +1330,6 @@ col:not(.table__checkbox) {
   border: none;
   -webkit-animation: fadeIn 0.5s 0.3s forwards;
           animation: fadeIn 0.5s 0.3s forwards;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes fadeIn {
@@ -1550,12 +1609,12 @@ input:invalid[focused=true] ~ .form__validation-msg {
   background-color: #000;
 }
 
-.table-widget {
+.loader-widget {
   position: relative;
   height: 100%;
 }
 
-.table-widget--center {
+.widget--center {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1775,7 +1834,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
   gap: var(--s3);
   flex-grow: 1;
   width: 300px;
-  max-width: 300px;
+  max-width: 312px;
   padding: var(--s2);
   border-radius: var(--mainBR);
   background-color: #fff;
@@ -2189,7 +2248,18 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .stats-card__icon {
-  padding: var(--s2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.stats-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: var(--s1);
 }
 
 .latest-contracts {
@@ -2218,13 +2288,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .contract-request {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s3);
   width: 300px;
-  padding: var(--s3);
-  border-radius: var(--mainBR);
-  background-color: #fff;
 }
 
 .contract-request__basic {
