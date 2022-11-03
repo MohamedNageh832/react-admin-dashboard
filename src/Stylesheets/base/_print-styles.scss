@@ -5,6 +5,16 @@ thead .thead__space-in-print,
   display: none;
 }
 
+.print--active .table__row {
+  height: 49.5px;
+}
+
+.print--active table:not(.print-all-columns) .table__heading:last-child,
+.print--active table:not(.print-all-columns) .table__cell:last-child,
+.print--active table:not(.print-all-columns) col:last-child {
+  display: none;
+}
+
 @media print {
   body {
     background-color: #fff;
@@ -77,9 +87,6 @@ thead .thead__space-in-print,
     display: table-footer-group;
   }
 
-  table:not(.print-all-columns) .table__heading:last-child,
-  table:not(.print-all-columns) .table__cell:last-child,
-  table:not(.print-all-columns) col:last-child,
   .overlay,
   .controls {
     display: none;
@@ -120,10 +127,6 @@ thead .thead__space-in-print,
 
   .table__heading {
     height: 42px;
-  }
-
-  .table__row {
-    height: 49.5px;
   }
 
   .table__cell--clickable {
