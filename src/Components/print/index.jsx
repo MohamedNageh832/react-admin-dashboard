@@ -10,24 +10,12 @@ const EasyPrint = ({ children }) => {
 
     window.print();
 
-    const tablesToBeHidden = Array.from(document.querySelectorAll(".print"));
-
-    tablesToBeHidden.forEach((el) => {
-      el.style.display = "block";
-    });
     isPrinting = false;
   }, [totalPages]);
 
   useEffect(() => {
     if (isPrinting) {
       let totalHeight = 0;
-
-      const tablesToBeHidden = Array.from(document.querySelectorAll(".print"));
-
-      tablesToBeHidden.forEach((el) => {
-        if (!el.contains(wrapperRef.current)) el.style.display = "none";
-        else el.style.display = "block";
-      });
 
       const children = Array.from(wrapperRef.current.children);
       children.forEach((child) => {
@@ -39,12 +27,16 @@ const EasyPrint = ({ children }) => {
       const totalPagesNum = Math.ceil(
         (totalHeight + correctionFactor) / pageAvailableSpace
       );
+
       setTotalPages([...Array(totalPagesNum)]);
     }
   }, [isPrinting]);
 
   return (
-    <section className="print" ref={wrapperRef}>
+    <section
+      className={`print ${isPrinting ? "print--active" : ""}`}
+      ref={wrapperRef}
+    >
       {children}
 
       {totalPages.map((_, i) => (

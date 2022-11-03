@@ -10,11 +10,11 @@ thead .thead__space-in-print,
     background-color: #fff;
   }
 
-  *:not(.print) {
+  *:not(.print--active) {
     visibility: hidden;
   }
 
-  .print {
+  .print--active {
     position: absolute;
     top: 0;
     right: 0;
@@ -23,7 +23,7 @@ thead .thead__space-in-print,
     background-color: #fff;
   }
 
-  .print * {
+  .print--active * {
     visibility: visible;
     animation: none !important;
   }
@@ -85,6 +85,10 @@ thead .thead__space-in-print,
     display: none;
   }
 
+  .print--active .table-holder {
+    height: auto;
+  }
+
   .main-content,
   .widget {
     position: static;
@@ -92,7 +96,7 @@ thead .thead__space-in-print,
   }
 
   .table-holder {
-    height: auto;
+    position: static;
   }
 
   .table__thead:not(.nested-table__thead) .thead__space-in-print {

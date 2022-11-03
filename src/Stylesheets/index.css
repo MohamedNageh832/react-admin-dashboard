@@ -2318,10 +2318,10 @@ thead .thead__space-in-print,
   body {
     background-color: #fff;
   }
-  *:not(.print) {
+  *:not(.print--active) {
     visibility: hidden;
   }
-  .print {
+  .print--active {
     position: absolute;
     top: 0;
     right: 0;
@@ -2329,7 +2329,7 @@ thead .thead__space-in-print,
     z-index: 1000;
     background-color: #fff;
   }
-  .print * {
+  .print--active * {
     visibility: visible;
     -webkit-animation: none !important;
             animation: none !important;
@@ -2383,13 +2383,16 @@ table:not(.print-all-columns) col:last-child,
 .controls {
     display: none;
   }
+  .print--active .table-holder {
+    height: auto;
+  }
   .main-content,
 .widget {
     position: static;
     padding: 0;
   }
   .table-holder {
-    height: auto;
+    position: static;
   }
   .table__thead:not(.nested-table__thead) .thead__space-in-print {
     display: table-row;
