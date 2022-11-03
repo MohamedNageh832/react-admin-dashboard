@@ -9,10 +9,11 @@ import { Link } from "react-router-dom";
 import PrintTemplate, {
   print,
 } from "../../../../Components/print/PrintTemplate";
-import LoaderWidget from "../../../../Components/loader-widget";
 import x from "../../../../Components/past-collections";
 import TablePagination from "../../../../Components/table/TablePagination";
 import PastCollectionTable from "../../ongoing-collection-requests/past-collection-table";
+import SpinnerLoader from "../../../../Components/loaders";
+import Widget from "../../../../Components/widget";
 
 const ajax = Ajax();
 
@@ -121,44 +122,49 @@ const CollectionHistoryTable = (props) => {
       </Table>
       {collectionTable && (
         <>
-          <LoaderWidget isPending={isPending} className="widget--center">
-            {collectionTable && (
-              <>
-                <section className="widget__header">
-                  <span>المحصل/ {collectionTable.collector}</span>
-                  <section className="flex">
-                    <h5 className="clients-num">{clientsNum} عميل</h5>
-                    <TablePagination
-                      numberOfPages={numberOfPages}
-                      onPageChange={handlePagination}
-                    />
+          <Widget className="widget--center">
+            <SpinnerLoader isPending={isPending} className="widget--center">
+              {collectionTable && (
+                <>
+                  <section className="widget__header">
+                    <span>المحصل/ {collectionTable.collector}</span>
+                    <section className="flex">
+                      <h5 className="clients-num">{clientsNum} عميل</h5>
+                      <TablePagination
+                        numberOfPages={numberOfPages}
+                        onPageChange={handlePagination}
+                      />
+                    </section>
                   </section>
-                </section>
 
-                <PrintTemplate
-                  title={`المحصل/ ${collectionTable.collector}`}
-                  footer={collectionTable.date}
+                  <PrintTemplate
+                    title={`المحصل/ ${collectionTable.collector}`}
+                    footer={collectionTable.date}
+                  >
+                    <PastCollectionTable
+                      tableData={collectionTable}
+                      isPrinting={isPrinting}
+                    />
+                  </PrintTemplate>
+                </>
+              )}
+
+              <section className="widget__controls widget__controls--fixed-bottom">
+                <button
+                  className="btn-link"
+                  onClick={() => setIsPrinting(true)}
                 >
-                  <PastCollectionTable
-                    tableData={collectionTable}
-                    isPrinting={isPrinting}
-                  />
-                </PrintTemplate>
-              </>
-            )}
-
-            <section className="widget__controls widget__controls--fixed-bottom">
-              <button className="btn-link" onClick={() => setIsPrinting(true)}>
-                اعادة طباعة
-              </button>
-              <button
-                className="btn-link--secondary"
-                onClick={() => setCollectionTable(null)}
-              >
-                اغلاق
-              </button>
-            </section>
-          </LoaderWidget>
+                  اعادة طباعة
+                </button>
+                <button
+                  className="btn-link--secondary"
+                  onClick={() => setCollectionTable(null)}
+                >
+                  اغلاق
+                </button>
+              </section>
+            </SpinnerLoader>
+          </Widget>
           <div
             className="overlay"
             onClick={() => setCollectionTable(null)}

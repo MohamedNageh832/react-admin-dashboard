@@ -33,13 +33,10 @@ const EditServicesRows = ({ services, setServices, setErrors }) => {
 
       servicesClone[index][name] = value;
 
-      setServices((prev) => servicesClone);
-      console.log(servicesClone);
+      setServices(() => servicesClone);
       setErrors((prev) => ({ ...prev, validServices: true }));
     };
   };
-
-  console.log("rerendered");
 
   return services.map((service, i) => (
     <ul className="edit-services-table--row" key={i + 200}>

@@ -3,11 +3,12 @@ import CurrentContractsTable from "../../../Components/current-contracts-table";
 import PrintOptions from "./PrintOptions";
 import Filter from "../../../Components/filter";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
-import LoaderWidget from "../../../Components/loader-widget";
+import WidgetLoader from "../../../Components/loaders";
 import TablePagination from "../../../Components/table/TablePagination";
 import x from "../../../Components/test copy";
 import useFetch from "../../../Hooks/useFetch";
 import { useMemo } from "react";
+import Widget from "../../../Components/widget";
 
 const intialPrintData = {
   contractSerial: true,
@@ -105,17 +106,19 @@ const CurrentContracts = () => {
 
       <Filter />
 
-      <LoaderWidget isPending={isPending}>
-        <section className="widget__header">
-          <h5 className="fs-2">{clientsNum} عميل</h5>
-          <TablePagination
-            numberOfPages={numberOfPages}
-            onPageChange={handlePagination}
-          />
-        </section>
+      <Widget>
+        <WidgetLoader isPending={isPending}>
+          <section className="widget__header">
+            <h5 className="fs-2">{clientsNum} عميل</h5>
+            <TablePagination
+              numberOfPages={numberOfPages}
+              onPageChange={handlePagination}
+            />
+          </section>
 
-        {currentContractsTable}
-      </LoaderWidget>
+          {currentContractsTable}
+        </WidgetLoader>
+      </Widget>
     </>
   );
 };

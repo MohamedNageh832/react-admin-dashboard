@@ -1,7 +1,23 @@
 import deepClone from "../../utils/deepClone";
 
-const ServicesControls = ({ services, onSave, isPending, setShowList }) => {
+const ServicesControls = ({
+  services,
+  onSave,
+  isPending,
+  setErrors,
+  setShowList,
+}) => {
   const handleSave = async () => {
+    for (let i = 0; i < services.length; i++) {
+      const service = services[i];
+      const emptyService = Object.values(service).some((el) => el === "");
+
+      if (emptyService) {
+        setErrors((prev) => ({ ...prev, validServices: false }));
+        return;
+      } else setErrors((prev) => ({ ...prev, validServices: true }));
+    }
+
     const servicesClone = deepClone(services);
 
     const newData = { ...services, services: servicesClone };

@@ -1,11 +1,13 @@
 import CurrentCollectionCard from "../components/current-collection-card";
 import StatsSection from "./StatsSection";
 import useFetch from "../../../Hooks/useFetch";
-import WidgetHeader from "../../../Components/widget/WidgetHeader";
+import WidgetHeader from "../../../Components/widget/widget-header";
 import { BASE_URL } from "../../../utils/constants";
 import LatestContractsTable from "../components/latest-contracts-table";
-import LoaderWidget from "../../../Components/loader-widget";
+import LoaderWidget from "../../../Components/loaders";
 import CurrentCollectionCards from "./CurrentCollectionCards";
+import Widget from "../../../Components/widget";
+import WidgetLoader from "../../../Components/loaders";
 
 const DataEntryHome = () => {
   const { isPending, error, data } = useFetch(
@@ -16,19 +18,20 @@ const DataEntryHome = () => {
     <>
       <StatsSection />
       <section className="widgets-holder">
-        <LoaderWidget isPending={isPending} className="latest-contracts">
+        <Widget className="latest-contracts">
           <WidgetHeader
             className="h3"
             linkTo="/staff/dataentry/currentContracts"
           >
             احدث التعاقدات
           </WidgetHeader>
-          {isPending && <div className="fs-3">جار التحميل...</div>}
-          {error && <div className="fs-3">حدث خطأ!</div>}
-          {data && <LatestContractsTable tableData={data} />}
-        </LoaderWidget>
+          <WidgetLoader isPending={isPending}>
+            {error && <div className="fs-3">حدث خطأ!</div>}
+            {data && <LatestContractsTable tableData={data} />}
+          </WidgetLoader>
+        </Widget>
 
-        <section className="widget ongoing-collections">
+        <section className="ongoing-collections">
           <WidgetHeader
             className="h4"
             linkTo="/staff/dataentry/ongoingcollectionrequests"

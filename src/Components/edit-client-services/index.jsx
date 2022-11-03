@@ -69,6 +69,7 @@ const EditClientServices = (props) => {
         <ServicesControls
           services={services}
           onSave={onSave}
+          setErrors={setErrors}
           setShowList={setShowList}
         />
       </section>

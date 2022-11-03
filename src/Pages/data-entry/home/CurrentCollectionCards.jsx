@@ -1,3 +1,4 @@
+import SpinnerLoader from "../../../Components/loaders";
 import useFetch from "../../../Hooks/useFetch";
 import { BASE_URL } from "../../../utils/constants";
 import CurrentCollectionCard from "../components/current-collection-card";
@@ -8,8 +9,7 @@ const CurrentCollectionCards = () => {
   );
 
   return (
-    <section className="current-collections">
-      {isPending && <div className="fs-3">جار التحميل...</div>}
+    <SpinnerLoader isPending={isPending} className="current-collections">
       {error && <div className="fs-3">حدث خطأ!</div>}
 
       {data &&
@@ -20,7 +20,7 @@ const CurrentCollectionCards = () => {
             cardData={item}
           />
         ))}
-    </section>
+    </SpinnerLoader>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LoaderWidget from "../../../../Components/loader-widget";
+import SpinnerLoader from "../../../../Components/loaders";
 import Ajax from "../../../../utils/Ajax";
 import OngoingCollectionTable from "../ongoing-collection-table";
 import x from "../../../../Components/test";
@@ -8,6 +8,7 @@ import PrintTemplate, {
   print,
 } from "../../../../Components/print/PrintTemplate";
 import { useEffect } from "react";
+import Widget from "../../../../Components/widget";
 
 const CurrentCollectionCard = ({ className, cardData }) => {
   const ajax = Ajax();
@@ -75,39 +76,44 @@ const CurrentCollectionCard = ({ className, cardData }) => {
 
       {showTable && (
         <>
-          <LoaderWidget isPending={isPending} className="widget--center">
-            {collectionTable && (
-              <>
-                <section className="widget__header">
-                  <span>المحصل/ {collectionTable.collector}</span>
-                  <section className="flex">
-                    <h5 className="clients-num">{clientsNum} عميل</h5>
-                    <TablePagination
-                      numberOfPages={pages}
-                      onPageChange={handlePagination}
-                    />
+          <Widget className="widget--center">
+            <SpinnerLoader isPending={isPending} className="widget--center">
+              {collectionTable && (
+                <>
+                  <section className="widget__header">
+                    <span>المحصل/ {collectionTable.collector}</span>
+                    <section className="flex">
+                      <h5 className="clients-num">{clientsNum} عميل</h5>
+                      <TablePagination
+                        numberOfPages={pages}
+                        onPageChange={handlePagination}
+                      />
+                    </section>
                   </section>
-                </section>
 
-                <PrintTemplate title={`المحصل/ ${collectionTable.collector}`}>
-                  <OngoingCollectionTable tableData={collectionTable} />
-                </PrintTemplate>
-              </>
-            )}
+                  <PrintTemplate title={`المحصل/ ${collectionTable.collector}`}>
+                    <OngoingCollectionTable tableData={collectionTable} />
+                  </PrintTemplate>
+                </>
+              )}
 
-            <section className="widget__controls widget__controls--fixed-bottom">
-              <button className="btn btn--blue">تأكيد الفاتورة</button>
-              <button
-                className="btn btn--secondary"
-                onClick={() => setShowTable(false)}
-              >
-                اغلاق
-              </button>
-              <button className="btn btn-link--secondary" onClick={handlePrint}>
-                اعادة طباعة
-              </button>
-            </section>
-          </LoaderWidget>
+              <section className="widget__controls widget__controls--fixed-bottom">
+                <button className="btn btn--blue">تأكيد الفاتورة</button>
+                <button
+                  className="btn btn--secondary"
+                  onClick={() => setShowTable(false)}
+                >
+                  اغلاق
+                </button>
+                <button
+                  className="btn btn-link--secondary"
+                  onClick={handlePrint}
+                >
+                  اعادة طباعة
+                </button>
+              </section>
+            </SpinnerLoader>
+          </Widget>
           <div className="overlay" onClick={() => setShowTable(false)}></div>
         </>
       )}

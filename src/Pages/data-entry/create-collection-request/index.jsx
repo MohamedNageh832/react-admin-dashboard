@@ -2,7 +2,7 @@ import Filter from "../../../Components/filter";
 import useFetch from "../../../Hooks/useFetch";
 import CreateCollectionRequestTable from "../../../Components/create-collection-request-table";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
-import LoaderWidget from "../../../Components/loader-widget";
+import SpinnerLoader from "../../../Components/loaders";
 import { useState } from "react";
 import deepClone from "../../../utils/deepClone";
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ import Ajax from "../../../utils/Ajax";
 import PrintOptions from "./PrintOptions";
 import x from "../../../Components/test";
 import { useMemo } from "react";
+import Widget from "../../../Components/widget";
 
 const intialPrintData = {
   date: true,
@@ -96,26 +97,28 @@ const CreateCollectionRequest = () => {
 
   const clientsTable = useMemo(
     () => (
-      <LoaderWidget isPending={isPending}>
-        <section className="widget__header">
-          <h5 className="fs-2">{clientsNum} عميل</h5>
-          <TablePagination
-            numberOfPages={pages}
-            onPageChange={handlePagination}
-          />
-        </section>
+      <Widget>
+        <SpinnerLoader isPending={isPending}>
+          <section className="widget__header">
+            <h5 className="fs-2">{clientsNum} عميل</h5>
+            <TablePagination
+              numberOfPages={pages}
+              onPageChange={handlePagination}
+            />
+          </section>
 
-        <PrintTemplate title={`المحصل/ ${printData.collector}`}>
-          <CreateCollectionRequestTable
-            data={tableData}
-            selected={selected}
-            setSelected={setSelected}
-            printData={printData}
-            isPrinting={isPrinting}
-            setPrintReady={setPrintReady}
-          />
-        </PrintTemplate>
-      </LoaderWidget>
+          <PrintTemplate title={`المحصل/ ${printData.collector}`}>
+            <CreateCollectionRequestTable
+              data={tableData}
+              selected={selected}
+              setSelected={setSelected}
+              printData={printData}
+              isPrinting={isPrinting}
+              setPrintReady={setPrintReady}
+            />
+          </PrintTemplate>
+        </SpinnerLoader>
+      </Widget>
     ),
     [data, selected, isPrinting, showPrintForm]
   );

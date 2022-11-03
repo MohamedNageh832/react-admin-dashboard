@@ -1,13 +1,15 @@
 import CurrentCollectionCard from "../components/current-collection-card";
 import Filter from "../../../Components/filter";
 import useFetch from "../../../Hooks/useFetch";
-import LoaderWidget from "../../../Components/loader-widget";
+import SpinnerLoader from "../../../Components/loaders";
 import { useState, useEffect, useMemo } from "react";
 import x from "../../../Components/test-history";
 import PrintTemplate, { print } from "../../../Components/print/PrintTemplate";
 import CollectionHistoryTable from "../components/collection-history-table";
 import PrintOptions from "./PrintOptions";
 import { BASE_URL } from "../../../utils/constants";
+import cardData from "../../../Components/cardData";
+import Widget from "../../../Components/widget";
 
 const intialPrintData = {
   collectionDate: true,
@@ -82,7 +84,7 @@ const OnGoingCollectionRequests = () => {
     <>
       <h2 className="heading-2">طلبات التحصيل الجارية</h2>
       <section className="d-flex">
-        <CurrentCollectionCard className="card" />
+        <CurrentCollectionCard className="card" cardData={cardData} />
       </section>
 
       <section className="space-between">
@@ -99,10 +101,12 @@ const OnGoingCollectionRequests = () => {
 
       <Filter />
 
-      <LoaderWidget isPending={isPending}>
-        {error && <div>حدث خطأ!</div>}
-        {tableData && collectionHistoryTable}
-      </LoaderWidget>
+      <Widget>
+        <SpinnerLoader isPending={isPending}>
+          {error && <div>حدث خطأ!</div>}
+          {tableData && collectionHistoryTable}
+        </SpinnerLoader>
+      </Widget>
     </>
   );
 };

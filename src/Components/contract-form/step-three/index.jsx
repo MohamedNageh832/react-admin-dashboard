@@ -115,7 +115,7 @@ const StepThree = ({ values, setValues, onChange, setCurrentStep }) => {
       {showList && (
         <EditClientServices
           servicesData={servicesData}
-          setValues={setValues}
+          onSave={setValues}
           setShowList={setShowList}
           clientName={values.clientName}
         />

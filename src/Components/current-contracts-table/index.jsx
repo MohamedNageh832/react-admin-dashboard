@@ -79,9 +79,8 @@ const CurrentContractsTable = (props) => {
                       </TableCell>
                     )}
 
-                    <TableCell className="table__cell">
+                    <TableCell className="table__cell table__cell--clickable">
                       <Link
-                        className="link"
                         to={`/staff/data-entry/get-client-Profile/${row.clientId}`}
                       >
                         {row.clientName}
