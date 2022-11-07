@@ -1,33 +1,30 @@
-import { Add } from "@mui/icons-material";
-import { useEffect, useState } from "react";
 import EditClientServices from "../../edit-client-services";
-import FormInput from "../../form/FormInput";
 import FormHeader from "../../form/FormHeader";
 import ClientService from "./ClientService";
-import DeleteBtn from "./DeleteBtn";
-
-const formData = [
-  {
-    label: "سريال التعاقد",
-    name: "contractSerial",
-    type: "number",
-    errorMessage: "ادخل سريال العقد",
-    required: true,
-  },
-  {
-    label: "تاريخ التعاقد",
-    name: "contractDate",
-    type: "date",
-    className: "custom-date",
-    errorMessage: "اختر تاريخ مناسب",
-    required: true,
-  },
-];
+import DeleteBtn from "./delete-btn";
+import FormFooter from "./form-footer";
+import AddNewService from "./add-new-service";
+import EnableDeleteBtn from "./enable-delete-btn";
+import DisableDeleteBtn from "./disable-delete-btn";
+import FormInputs from "./form-inputs";
+import { useState } from "react";
+import deepClone from "../../../utils/deepClone";
 
 const StepThree = ({ values, setValues, onChange, setCurrentStep }) => {
   const servicesData = values.services || [];
   const [showList, setShowList] = useState(false);
   const [showDeleteBtns, setShowDeleteBtns] = useState(false);
+
+  const handleDelete = (index) => {
+    const servicesClone = deepClone(servicesData);
+    servicesClone.splice(index, 1);
+
+    if (servicesClone.length >= 1) setValues(servicesClone);
+    else {
+      setValues((prev) => ({ ...prev, services: [] }));
+      setShowDeleteBtns(false);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,65 +50,26 @@ const StepThree = ({ values, setValues, onChange, setCurrentStep }) => {
                 setShowList={setShowList}
               >
                 {showDeleteBtns && (
-                  <DeleteBtn
-                    index={i}
-                    array={servicesData}
-                    setArray={setValues}
-                    setShowDeleteBtns={setShowDeleteBtns}
-                  />
+                  <DeleteBtn onClick={() => handleDelete(i)} />
                 )}
               </ClientService>
             ))}
+
           <section>
-            <button
-              className="link ml-3"
-              type="button"
-              onClick={() => setShowList(true)}
-            >
-              <Add /> اضف خدمة جديدة
-            </button>
-            {servicesData && !showDeleteBtns && (
-              <button
-                className="link link--sec"
-                onClick={() => setShowDeleteBtns(true)}
-              >
-                حذف
-              </button>
+            <AddNewService onClick={() => setShowList(true)} />
+            {servicesData.length > 0 && !showDeleteBtns && (
+              <EnableDeleteBtn onClick={() => setShowDeleteBtns(true)} />
             )}
             {showDeleteBtns && (
-              <button
-                className="link link--sec"
-                onClick={() => setShowDeleteBtns(false)}
-              >
-                تأكيد
-              </button>
+              <DisableDeleteBtn onClick={() => setShowDeleteBtns(false)} />
             )}
           </section>
         </section>
 
-        {formData.map((input, i) => (
-          <FormInput
-            key={i}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
-          />
-        ))}
-
-        <footer className="form__footer">
-          <button className="btn btn--blue" type="submit">
-            التالي
-          </button>
-
-          <button
-            className="btn btn--secondary"
-            type="button"
-            onClick={() => setCurrentStep((prev) => prev - 1)}
-          >
-            السابق
-          </button>
-        </footer>
+        <FormInputs values={values} onChange={onChange} />
+        <FormFooter setCurrentStep={setCurrentStep} />
       </form>
+
       {showList && (
         <EditClientServices
           servicesData={servicesData}

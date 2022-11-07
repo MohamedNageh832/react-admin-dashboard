@@ -1,8 +1,7 @@
 import { useState } from "react";
-import FormButton from "../form/FormButton";
 import Confirm from "./confirm";
-import StepOne from "./StepOne";
-import StepTwo from "./StepTwo";
+import StepOne from "./step-one";
+import StepTwo from "./step-two";
 import StepThree from "./step-three";
 
 const ContractForm = ({ data, setShowForm }) => {

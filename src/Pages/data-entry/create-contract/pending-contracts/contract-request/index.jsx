@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ContractForm from "../../../Components/contract-form";
-import Widget from "../../../Components/widget";
-import WidgetLoader from "../../../Components/loaders";
-import Ajax from "../../../utils/Ajax";
+import ContractForm from "../../../../../Components/contract-form";
+import Widget from "../../../../../Components/widget";
+import WidgetLoader from "../../../../../Components/loaders";
+import Ajax from "../../../../../utils/Ajax";
 
 const x = {
   sender: "",

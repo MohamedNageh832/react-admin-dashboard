@@ -1,5 +1,5 @@
-import FormInput from "../form/FormInput";
-import FormHeader from "../form/FormHeader";
+import FormInput from "../../form/FormInput";
+import FormHeader from "../../form/FormHeader";
 
 const formData = [
   {
