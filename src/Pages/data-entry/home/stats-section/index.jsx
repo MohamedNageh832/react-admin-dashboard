@@ -4,9 +4,9 @@ import {
   PeopleAltOutlined,
   PersonOutlineOutlined,
 } from "@mui/icons-material";
-import useFetch from "../../../Hooks/useFetch";
-import StatsCard from "../../../Components/stats-card";
-import { BASE_URL } from "../../../utils/constants";
+import useFetch from "../../../../Hooks/useFetch";
+import StatsCard from "../../../../Components/stats-card";
+import { BASE_URL } from "../../../../utils/constants";
 
 const cardProps = [
   {
@@ -14,23 +14,20 @@ const cardProps = [
     color: "#fff",
     icon: <PaymentsOutlined />,
     title: "مطلوب التحصيل من",
-    // data: "remainingCollections",
-    data: "peopleTocollectFrom",
+    data: "remainingCollections",
   },
   {
     bgColor: "var(--green)",
     color: "#fff",
     icon: <Check />,
     title: "تم التحصيل من",
-    // data: "collected",
-    data: "peopleCollectedFrom",
+    data: "collected",
   },
   {
     bgColor: "var(--blue)",
     color: "#fff",
     icon: <PeopleAltOutlined />,
     title: "العملاء الحالين",
-    data: "clientsNum",
     data: "currentClients",
   },
   {
@@ -38,8 +35,7 @@ const cardProps = [
     color: "#000",
     icon: <PersonOutlineOutlined />,
     title: "عدد المحصلين",
-    data: "collectersNum",
-    // data: "collectors",
+    data: "collectorsNum",
   },
 ];
 

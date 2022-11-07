@@ -2,7 +2,7 @@ import SpinnerLoader from "../../../../Components/loaders";
 import Widget from "../../../../Components/widget";
 import WidgetHeader from "../../../../Components/widget/widget-header";
 import useFetch from "../../../../Hooks/useFetch";
-import { BASE_URL } from "../../../utils/constants";
+import { BASE_URL } from "../../../../utils/constants";
 import LatestContractsTable from "../../components/latest-contracts-table";
 
 const LatestContracts = () => {

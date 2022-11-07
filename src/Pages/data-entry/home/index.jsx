@@ -1,4 +1,4 @@
-import StatsSection from "./StatsSection";
+import StatsSection from "./stats-section";
 import OngoingCollections from "./ongoing-collections";
 import LatestContracts from "./latest-contracts";
 

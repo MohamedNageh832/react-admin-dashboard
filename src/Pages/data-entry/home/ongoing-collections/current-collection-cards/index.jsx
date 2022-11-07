@@ -1,7 +1,7 @@
-import SpinnerLoader from "../../../Components/loaders";
-import useFetch from "../../../Hooks/useFetch";
-import { BASE_URL } from "../../../utils/constants";
-import CurrentCollectionCard from "../components/current-collection-card";
+import SpinnerLoader from "../../../../../Components/loaders";
+import useFetch from "../../../../../Hooks/useFetch";
+import { BASE_URL } from "../../../../../utils/constants";
+import CurrentCollectionCard from "../../../components/current-collection-card";
 
 const CurrentCollectionCards = () => {
   const { data, isPending, error } = useFetch(
