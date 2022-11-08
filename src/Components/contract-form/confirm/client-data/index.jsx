@@ -14,12 +14,16 @@ const ClientData = ({ values }) => {
         {values.addressDetails}
       </FormDataConfirm>
 
-      <FormDataConfirm label="العمارة">{values.building}</FormDataConfirm>
+      <FormDataConfirm label="العمارة">
+        {values.building ? values.building : "لا يوجد"}
+      </FormDataConfirm>
 
-      <FormDataConfirm label="الشقة">{values.apartment}</FormDataConfirm>
+      <FormDataConfirm label="الشقة">
+        {values.apartment ? values.apartment : "لا يوجد"}
+      </FormDataConfirm>
 
       <FormDataConfirm label="حساب التعاقد ل">
-        {values.countContractFor}
+        {values.countContractFor ? values.countContractFor : "لا يوجد"}
       </FormDataConfirm>
 
       <FormDataConfirm label="الخدمات">

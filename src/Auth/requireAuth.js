@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import NotFound from "../Pages/404page/NotFound";

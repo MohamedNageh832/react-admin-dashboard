@@ -5,7 +5,6 @@ import Homepage from "./Pages/Homepage";
 import LoginPage from "./Pages/login/Login";
 import NotFound from "./Pages/404page/NotFound";
 import DataEntryPages from "./routes/data-entry";
-import ClientProfile from "./Pages/global/client-profile";
 
 function App() {
   return (

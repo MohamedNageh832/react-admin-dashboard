@@ -1,0 +1,13 @@
+.not-found {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--s5);
+  background-color: #fff;
+  text-align: center;
+}
+
+.not-found__img {
+  width: 600px;
+  max-width: 90%;
+  max-height: 50vh;
+}

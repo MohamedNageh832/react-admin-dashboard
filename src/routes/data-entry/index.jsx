@@ -10,6 +10,7 @@ import Complaints from "../../Pages/data-entry/complaints";
 import { useState } from "react";
 import ClientProfile from "../../Pages/global/client-profile";
 import useAuth from "../../Hooks/useAuth";
+import NotFound from "../../Pages/404page/NotFound";
 
 const DataEntryPages = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -71,6 +72,7 @@ const DataEntryPages = () => {
             />
             <Route path="/get-client-Profile/:id" element={<ClientProfile />} />
             <Route path="/complaints" element={<Complaints />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

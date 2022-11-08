@@ -27,7 +27,9 @@
 @use "./components/checkbox";
 @use "./components/loaders";
 @use "./components/breadcrumb";
+@use "./components/alert";
 
+@use "./pages/not-found";
 @use "./pages/login";
 @use "./pages/data-entry-pages";
 @use "./pages/data-entry-home";

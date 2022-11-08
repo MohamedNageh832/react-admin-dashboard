@@ -3,6 +3,7 @@ import Confirm from "./confirm";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 import StepThree from "./step-three";
+import Success from "./success";
 
 const ContractForm = ({ data, setShowForm }) => {
   const {
@@ -36,6 +37,10 @@ const ContractForm = ({ data, setShowForm }) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const handleSuccess = () => {
+    setTimeout(() => setShowForm(false), 2000);
+  };
+
   const steps = {
     1: (
       <StepOne
@@ -60,6 +65,7 @@ const ContractForm = ({ data, setShowForm }) => {
       />
     ),
     4: <Confirm values={values} setCurrentStep={setCurrentStep} />,
+    success: <Success callback={handleSuccess}>تم تسجيل التعاقد بنجاح</Success>,
   };
 
   return (
