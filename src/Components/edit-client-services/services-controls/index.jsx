@@ -1,4 +1,4 @@
-import deepClone from "../../utils/deepClone";
+import deepClone from "../../../utils/deepClone";
 
 const ServicesControls = ({
   services,
@@ -20,8 +20,7 @@ const ServicesControls = ({
 
     const servicesClone = deepClone(services);
 
-    const newData = { ...services, services: servicesClone };
-    await onSave(newData);
+    await onSave(servicesClone);
     setShowList(false);
   };
 

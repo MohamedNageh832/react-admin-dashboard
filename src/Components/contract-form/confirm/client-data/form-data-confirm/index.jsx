@@ -1,7 +1,7 @@
 const FormDataConfirm = ({ label, children }) => {
   return (
-    <section>
-      <label className="text-sec">{label}</label>
+    <section className="mb-2">
+      <label className="text--secondary">{label}</label>
       <button type="button" className="link mr-2">
         تغيير
       </button>

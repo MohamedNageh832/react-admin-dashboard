@@ -1,9 +1,9 @@
 import { useState } from "react";
 import deepClone from "../../utils/deepClone";
-import AddServiceBtn from "./AddServiceBtn";
+import AddServiceBtn from "./add-services-btn";
 import EditServicesRows from "./edit-services-rows";
-import EditServicesTable from "./EditServicesTable";
-import ServicesControls from "./ServicesControls";
+import EditServicesTable from "./edit-services-table";
+import ServicesControls from "./services-controls";
 
 const EditClientServices = (props) => {
   const { clientName, servicesData, onSave, setShowList } = props || {};
