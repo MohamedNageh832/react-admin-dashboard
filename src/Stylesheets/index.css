@@ -861,7 +861,6 @@ th {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -1018,8 +1017,12 @@ th {
 
 .table-holder {
   position: relative;
-  height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
   overflow: auto;
+}
+
+.table-holder--fit {
+  max-height: 277px;
 }
 
 .table-holder::-webkit-scrollbar {
@@ -1080,7 +1083,6 @@ col:not(.table__checkbox) {
 }
 
 .table__heading {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 0;
@@ -1105,8 +1107,7 @@ col:not(.table__checkbox) {
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent transparent rgba(0, 0, 0, 0.7);
-  -webkit-animation: fadeIn 0.5s forwards;
-          animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.5s forwards;
 }
 
 .table__cell--ellipses:hover::after {
@@ -1120,17 +1121,7 @@ col:not(.table__checkbox) {
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: var(--fs2);
-  -webkit-animation: fadeIn 0.5s forwards;
-          animation: fadeIn 0.5s forwards;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: fadeIn 0.5s forwards;
 }
 
 @keyframes fadeIn {
@@ -1213,19 +1204,7 @@ col:not(.table__checkbox) {
   border-radius: var(--mainBR);
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
-  -webkit-animation: scaleFade 0.5s forwards;
-          animation: scaleFade 0.5s forwards;
-}
-
-@-webkit-keyframes scaleFade {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  animation: scaleFade 0.5s forwards;
 }
 
 @keyframes scaleFade {
@@ -1298,18 +1277,8 @@ col:not(.table__checkbox) {
   right: 26px;
   width: 1px;
   height: calc(100% + 4px);
-  -webkit-animation: animateHeight 0.9s forwards;
-          animation: animateHeight 0.9s forwards;
+  animation: animateHeight 0.9s forwards;
   background-color: #ccc;
-}
-
-@-webkit-keyframes animateHeight {
-  from {
-    height: 0;
-  }
-  to {
-    height: calc(100% + 4px);
-  }
 }
 
 @keyframes animateHeight {
@@ -1328,8 +1297,7 @@ col:not(.table__checkbox) {
 .nested-table__row {
   position: relative;
   border: none;
-  -webkit-animation: fadeIn 0.5s 0.3s forwards;
-          animation: fadeIn 0.5s 0.3s forwards;
+  animation: fadeIn 0.5s 0.3s forwards;
 }
 
 @keyframes fadeIn {
@@ -1349,17 +1317,7 @@ col:not(.table__checkbox) {
   height: 1px;
   border-radius: var(--mainBR);
   background-color: #ccc;
-  -webkit-animation: animateWidth 1s 0.3s forwards;
-          animation: animateWidth 1s 0.3s forwards;
-}
-
-@-webkit-keyframes animateWidth {
-  from {
-    width: 0;
-  }
-  to {
-    width: 18px;
-  }
+  animation: animateWidth 1s 0.3s forwards;
 }
 
 @keyframes animateWidth {
@@ -1401,12 +1359,6 @@ col:not(.table__checkbox) {
   top: 85%;
   box-shadow: 1px 1px 10px #ededed;
   font-size: var(--fs2);
-}
-
-.filter-form__body {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s5);
 }
 
 .filter-form__column {
@@ -1618,7 +1570,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
   z-index: 100;
   overflow: auto;
   min-width: 600px;
-  max-width: 100%;
+  max-width: 95%;
   height: 400px;
   max-height: 100%;
   padding-bottom: 0;
@@ -1670,7 +1622,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .widget__controls--fixed-bottom {
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   left: 0;
@@ -1678,7 +1629,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .navbar {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   display: flex;
@@ -1784,7 +1734,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .sidebar__links-holder {
-  position: -webkit-sticky;
   position: sticky;
   top: 83px;
   display: flex;
@@ -1829,7 +1778,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
   flex-direction: column;
   gap: var(--s3);
   flex-grow: 1;
-  max-width: 300px;
+  min-width: 300px;
   height: 185px;
   padding: var(--s3);
   border-radius: var(--mainBR);
@@ -1927,7 +1876,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
 }
 
 .multi-select__value {
-  width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding-left: var(--s2);
@@ -1957,7 +1905,6 @@ input:invalid[focused=true] ~ .form__validation-msg {
   top: calc(100% + 5px);
   left: 0;
   z-index: 1;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: var(--s2);
@@ -2079,17 +2026,17 @@ input:invalid[focused=true] ~ .form__validation-msg {
 
 .checkbox__input:checked + .checkbox__ui,
 .checkbox--sm .checkbox__ui {
-  border-width: 1px;
+  border-width: 2px;
 }
 
 .checkbox__ui::after {
   content: "";
   position: absolute;
-  top: 20%;
-  left: 35%;
+  top: 8%;
+  left: 30%;
   transform: rotate(45deg);
-  width: 20%;
-  height: 40%;
+  width: 25%;
+  height: 60%;
   opacity: 0;
   border-width: 0 2px 2px 0;
   border-style: solid;
@@ -2169,17 +2116,7 @@ input:invalid[focused=true] ~ .form__validation-msg {
   border-style: solid;
   border-color: transparent var(--blue);
   border-radius: 50%;
-  -webkit-animation: spin 1.5s ease-in-out forwards infinite;
-          animation: spin 1.5s ease-in-out forwards infinite;
-}
-
-@-webkit-keyframes spin {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  animation: spin 1.5s ease-in-out forwards infinite;
 }
 
 @keyframes spin {
@@ -2321,13 +2258,12 @@ input:invalid[focused=true] ~ .form__validation-msg {
 .current-collections {
   display: flex;
   gap: var(--s2);
-  flex-wrap: wrap;
+  overflow: auto;
   padding-top: var(--s3);
 }
 
 .pending-contracts {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--s2);
   overflow: auto;
 }
@@ -2389,8 +2325,7 @@ thead .thead__space-in-print,
   }
   .print--active * {
     visibility: visible;
-    -webkit-animation: none !important;
-            animation: none !important;
+    animation: none !important;
   }
   .print__page-title {
     position: fixed;
@@ -2422,7 +2357,7 @@ thead .thead__space-in-print,
     min-width: 0 !important;
   }
   table tr,
-table td {
+  table td {
     page-break-inside: avoid;
     page-break-after: auto;
     overflow: visible !important;
@@ -2435,28 +2370,35 @@ table td {
     display: table-footer-group;
   }
   .overlay,
-.controls {
+  .controls {
     display: none;
   }
   .print--active .table-holder {
     height: auto;
   }
   .main-content,
-.widget {
+  .widget {
     position: static;
     padding: 0;
   }
   .table-holder {
     position: static;
+    overflow: visible;
+  }
+  .table-holder--fit {
+    max-height: none;
   }
   .table__thead:not(.nested-table__thead) .thead__space-in-print {
     display: table-row;
     height: 62px;
   }
   .table__heading,
-.table__cell {
+  .table__cell {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .table__cell {
+    height: 50px;
   }
   .table__cell--ellipses::before {
     display: none;
@@ -2476,7 +2418,7 @@ table td {
     width: 50px;
   }
   .nested-table__heading,
-.nested-table__cell {
+  .nested-table__cell {
     height: 22px;
     padding-top: 0;
     padding-bottom: 0;
@@ -2510,8 +2452,7 @@ table td {
     top: -12px;
     right: 25px;
     height: calc(100% + 8px);
-    -webkit-animation: none;
-            animation: none;
+    animation: none;
   }
   .nested-table__row::before {
     display: none;
@@ -2522,6 +2463,7 @@ table td {
     left: 0;
     transform: none;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     overflow: visible;
   }

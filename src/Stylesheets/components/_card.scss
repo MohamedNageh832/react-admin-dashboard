@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: var(--s3);
   flex-grow: 1;
-  max-width: 300px;
+  min-width: 300px;
   height: 185px;
   padding: var(--s3);
   border-radius: var(--mainBR);

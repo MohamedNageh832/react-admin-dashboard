@@ -14,6 +14,7 @@ import TablePagination from "../../../../Components/table/TablePagination";
 import PastCollectionTable from "../../ongoing-collection-requests/past-collection-table";
 import SpinnerLoader from "../../../../Components/loaders";
 import Widget from "../../../../Components/widget";
+import { useMemo } from "react";
 
 const ajax = Ajax();
 
@@ -21,7 +22,7 @@ const CollectionHistoryTable = (props) => {
   const { tableData, printData } = props || {};
   const [isPending, setIsPending] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
-  const [data, setData] = useState(tableData);
+  const data = tableData;
   const [collectionTable, setCollectionTable] = useState(null);
 
   const clientsNum = data.rows.length;
@@ -123,7 +124,7 @@ const CollectionHistoryTable = (props) => {
       {collectionTable && (
         <>
           <Widget className="widget--center">
-            <SpinnerLoader isPending={isPending} className="widget--center">
+            <SpinnerLoader isPending={isPending}>
               {collectionTable && (
                 <>
                   <section className="widget__header">

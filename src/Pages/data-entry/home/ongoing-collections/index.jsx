@@ -1,17 +1,24 @@
+import ongoingCollectionData from "../../../../Components/cardData";
+import PreviewWrapper from "../../../../Components/data-previewer/preview-wrapper";
+import Widget from "../../../../Components/widget";
 import WidgetHeader from "../../../../Components/widget/widget-header";
 import CurrentCollectionCards from "./current-collection-cards";
 
 const OngoingCollections = () => {
   return (
     <section className="ongoing-collections">
-      <WidgetHeader
-        className="h4"
-        linkTo="/staff/dataentry/ongoingcollectionrequests"
-      >
-        طلبات التحصيل الجارية
-      </WidgetHeader>
+      <Widget>
+        <WidgetHeader
+          className="h4"
+          linkTo="/staff/data-entry/ongoing-collection-requests"
+        >
+          طلبات التحصيل الجارية
+        </WidgetHeader>
 
-      <CurrentCollectionCards />
+        <PreviewWrapper dataReceived={ongoingCollectionData}>
+          <CurrentCollectionCards />
+        </PreviewWrapper>
+      </Widget>
     </section>
   );
 };

@@ -85,7 +85,7 @@ const PastCollectionTable = (props) => {
   // data.showNested ?
 
   return (
-    <div className="table-holder">
+    <div className="table-holder table-holder--fit">
       <Table className="print-all-columns table--layout-fixed">
         <colgroup>
           <col className="table__checkbox"></col>

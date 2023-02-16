@@ -1,4 +1,4 @@
-const x = {
+const collectionCardsData = {
   thead: {
     date: "تاريخ التعاقد",
     collector: "اسم المحصل",
@@ -298,4 +298,4 @@ const x = {
   ],
 };
 
-export default x;
+export default collectionCardsData;

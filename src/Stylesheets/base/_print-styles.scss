@@ -104,6 +104,11 @@ thead .thead__space-in-print,
 
   .table-holder {
     position: static;
+    overflow: visible;
+  }
+
+  .table-holder--fit {
+    max-height: none;
   }
 
   .table__thead:not(.nested-table__thead) .thead__space-in-print {
@@ -115,6 +120,10 @@ thead .thead__space-in-print,
   .table__cell {
     padding-left: 10px;
     padding-right: 10px;
+  }
+
+  .table__cell {
+    height: 50px;
   }
 
   .table__cell--ellipses::before {
@@ -197,6 +206,7 @@ thead .thead__space-in-print,
     left: 0;
     transform: none;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     overflow: visible;
   }

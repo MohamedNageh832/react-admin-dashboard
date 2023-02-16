@@ -39,17 +39,17 @@
 
 .checkbox__input:checked + .checkbox__ui,
 .checkbox--sm .checkbox__ui {
-  border-width: 1px;
+  border-width: 2px;
 }
 
 .checkbox__ui::after {
   content: "";
   position: absolute;
-  top: 20%;
-  left: 35%;
+  top: 8%;
+  left: 30%;
   transform: rotate(45deg);
-  width: 20%;
-  height: 40%;
+  width: 25%;
+  height: 60%;
   opacity: 0;
   border-width: 0 2px 2px 0;
   border-style: solid;

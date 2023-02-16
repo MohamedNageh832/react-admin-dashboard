@@ -7,8 +7,12 @@
 
 .table-holder {
   position: relative;
-  height: calc(100vh - 100px);
+  max-height: calc(100vh - 100px);
   overflow: auto;
+}
+
+.table-holder--fit {
+  max-height: 277px;
 }
 
 .table-holder::-webkit-scrollbar {

@@ -9,13 +9,15 @@ import PrintTemplate, {
 } from "../../../../Components/print/PrintTemplate";
 import { useEffect } from "react";
 import Widget from "../../../../Components/widget";
+import { usePreviewer } from "../../../../Components/data-previewer";
 
 const CurrentCollectionCard = ({ className, cardData }) => {
   const ajax = Ajax();
   const [showTable, setShowTable] = useState(false);
-  const [isPending, setIsPending] = useState(false);
+  // const [isPending, setIsPending] = useState(false);
   const [isPrinting, setIsPrinting] = useState(false);
-  const { clientsNum, date, collector, areas, clientId } = cardData || {};
+  const { data, isPending, error } = usePreviewer();
+  const { clientsNum, date, collector, areas, clientId } = cardData || data;
   const [collectionTable, setCollectionTable] = useState(x);
 
   const numberOfPages = Math.ceil(clientsNum / 20);
@@ -23,16 +25,16 @@ const CurrentCollectionCard = ({ className, cardData }) => {
 
   const handleClick = async () => {
     setShowTable(true);
-    setIsPending(true);
+    // setIsPending(true);
     const data = await ajax.post(
       "https://aswangreen2.pythonanywhere.com/account/login",
       { clientId }
     );
-    setIsPending(false);
+    // setIsPending(false);
   };
 
   const handlePrint = () => {
-    setIsPending(true);
+    // setIsPending(true);
     setIsPrinting(true);
   };
 
@@ -40,7 +42,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
     if (!isPrinting) return;
 
     print();
-    setIsPending(false);
+    // setIsPending(false);
     setIsPrinting(false);
   }, [isPrinting]);
 
@@ -77,7 +79,7 @@ const CurrentCollectionCard = ({ className, cardData }) => {
       {showTable && (
         <>
           <Widget className="widget--center">
-            <SpinnerLoader isPending={isPending} className="widget--center">
+            <SpinnerLoader isPending={isPending}>
               {collectionTable && (
                 <>
                   <section className="widget__header">

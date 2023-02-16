@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "../../layout/navbar";
 import Sidebar from "../../layout/sidebar";
 import DataEntryHome from "../../Pages/data-entry/home";
@@ -10,7 +10,7 @@ import Complaints from "../../Pages/data-entry/complaints";
 import { useState } from "react";
 import ClientProfile from "../../Pages/global/client-profile";
 import useAuth from "../../Hooks/useAuth";
-import NotFound from "../../Pages/404page/NotFound";
+import DataPreviewer from "../../Components/data-previewer";
 
 const DataEntryPages = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -61,10 +61,21 @@ const DataEntryPages = () => {
           <Routes>
             <Route path="/" element={<DataEntryHome />} />
             <Route path="/create-contract" element={<CreateContract />} />
-            <Route path="/current-contracts" element={<CurrentContracts />} />
+            <Route
+              path="/current-contracts"
+              element={
+                <DataPreviewer>
+                  <CurrentContracts />
+                </DataPreviewer>
+              }
+            />
             <Route
               path="/ongoing-collection-requests"
-              element={<OnGoingCollectionRequests />}
+              element={
+                <DataPreviewer>
+                  <OnGoingCollectionRequests />
+                </DataPreviewer>
+              }
             />
             <Route
               path="/create-collection-request"
@@ -72,7 +83,7 @@ const DataEntryPages = () => {
             />
             <Route path="/get-client-Profile/:id" element={<ClientProfile />} />
             <Route path="/complaints" element={<Complaints />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
         </main>
       </div>

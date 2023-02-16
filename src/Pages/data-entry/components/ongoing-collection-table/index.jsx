@@ -87,7 +87,7 @@ const OngoingCollectionTable = (props) => {
   );
 
   return (
-    <div className="table-holder">
+    <div className="table-holder table-holder--fit">
       <Table className="table--layout-fixed print-all">
         <colgroup>
           <col className="table__checkbox"></col>

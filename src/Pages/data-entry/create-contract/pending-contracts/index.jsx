@@ -1,9 +1,11 @@
+import { usePreviewer } from "../../../../Components/data-previewer";
 import SpinnerLoader from "../../../../Components/loaders";
 import useFetch from "../../../../Hooks/useFetch";
 import ContractRequest from "./contract-request";
 
 const PendingContracts = () => {
-  const { isPending, error, data } = useFetch("");
+  // const { isPending, error, data } = useFetch("");
+  const { isPending, error, data } = usePreviewer();
 
   return (
     <section className="pending-contracts">

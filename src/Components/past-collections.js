@@ -1,4 +1,4 @@
-const x = {
+const pastCollectionsData = {
   date: "2/12/2022",
   thead: {
     clientName: "اسم العميل",
@@ -92,4 +92,4 @@ const x = {
   ],
 };
 
-export default x;
+export default pastCollectionsData;

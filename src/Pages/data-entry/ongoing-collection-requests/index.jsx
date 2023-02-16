@@ -10,6 +10,13 @@ import PrintOptions from "./PrintOptions";
 import { BASE_URL } from "../../../utils/constants";
 import cardData from "../../../Components/cardData";
 import Widget from "../../../Components/widget";
+import DataPreviewer, {
+  usePreviewer,
+} from "../../../Components/data-previewer";
+import PreviewWrapper from "../../../Components/data-previewer/preview-wrapper";
+import collectionCardsData from "../../../Components/test-history";
+import pastCollectionsData from "../../../Components/past-collections";
+import CurrentCollectionCards from "../home/ongoing-collections/current-collection-cards";
 
 const intialPrintData = {
   collectionDate: true,
@@ -20,15 +27,15 @@ const intialPrintData = {
 };
 
 const OnGoingCollectionRequests = () => {
-  const { isPending, error, data } = useFetch(
-    `${BASE_URL}api/contractTables?format=json&&tableType=currentContracts`
-  );
-  const [tableData, setTableData] = useState(x);
+  // const { isPending, error, data } = useFetch(
+  //   `${BASE_URL}api/contractTables?format=json&&tableType=currentContracts`
+  // );
+  const { isPending, error, data } = usePreviewer();
   const [isPrinting, setIsPrinting] = useState(false);
   const [showPrintForm, setShowPrintForm] = useState(false);
-  const [selected, setSelected] = useState(
-    tableData.rows.filter((el) => el.checked)
-  );
+  // const [selected, setSelected] = useState(
+  //   data.rows.filter((el) => el.checked)
+  // );
 
   const [printData, setPrintData] = useState(intialPrintData);
 
@@ -75,17 +82,22 @@ const OnGoingCollectionRequests = () => {
   const collectionHistoryTable = useMemo(() => {
     return (
       <PrintTemplate>
-        <CollectionHistoryTable tableData={tableData} printData={printData} />
+        <CollectionHistoryTable tableData={data} printData={printData} />
       </PrintTemplate>
     );
-  }, [tableData, isPrinting, showPrintForm]);
+  }, [data, isPrinting, showPrintForm]);
 
   return (
     <>
       <h2 className="heading-2">طلبات التحصيل الجارية</h2>
-      <section className="d-flex">
-        <CurrentCollectionCard className="card" cardData={cardData} />
-      </section>
+      <DataPreviewer>
+        <PreviewWrapper dataReceived={collectionCardsData.rows}>
+          <section className="d-flex">
+            <CurrentCollectionCards />
+            {/* <CurrentCollectionCard className="card" cardData={cardData} /> */}
+          </section>
+        </PreviewWrapper>
+      </DataPreviewer>
 
       <section className="space-between">
         <h2 className="heading-2">السجل</h2>
@@ -101,12 +113,14 @@ const OnGoingCollectionRequests = () => {
 
       <Filter />
 
-      <Widget>
-        <SpinnerLoader isPending={isPending}>
-          {error && <div>حدث خطأ!</div>}
-          {tableData && collectionHistoryTable}
-        </SpinnerLoader>
-      </Widget>
+      <PreviewWrapper dataReceived={collectionCardsData}>
+        <Widget>
+          <SpinnerLoader isPending={isPending}>
+            {error && <div>حدث خطأ!</div>}
+            {data && collectionHistoryTable}
+          </SpinnerLoader>
+        </Widget>
+      </PreviewWrapper>
     </>
   );
 };

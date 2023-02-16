@@ -1,12 +1,15 @@
+import { usePreviewer } from "../../../../../Components/data-previewer";
 import SpinnerLoader from "../../../../../Components/loaders";
 import useFetch from "../../../../../Hooks/useFetch";
 import { BASE_URL } from "../../../../../utils/constants";
 import CurrentCollectionCard from "../../../components/current-collection-card";
 
 const CurrentCollectionCards = () => {
-  const { data, isPending, error } = useFetch(
-    `${BASE_URL}/DataEntry/mainPageStatsSecond?format=json`
-  );
+  // const { data, isPending, error } = useFetch(
+  //   `${BASE_URL}/DataEntry/mainPageStatsSecond?format=json`
+  // );
+
+  const { data, isPending, error } = usePreviewer();
 
   return (
     <SpinnerLoader isPending={isPending} className="current-collections">

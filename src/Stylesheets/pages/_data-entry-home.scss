@@ -48,6 +48,6 @@
 .current-collections {
   display: flex;
   gap: var(--s2);
-  flex-wrap: wrap;
+  overflow: auto;
   padding-top: var(--s3);
 }
