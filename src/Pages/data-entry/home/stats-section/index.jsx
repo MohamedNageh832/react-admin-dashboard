@@ -7,10 +7,7 @@ import {
 import useFetch from "../../../../Hooks/useFetch";
 import StatsCard from "../../../../Components/stats-card";
 import { BASE_URL } from "../../../../utils/constants";
-import {
-  PreviewButton,
-  usePreviewer,
-} from "../../../../Components/data-previewer";
+import { usePreviewer } from "../../../../Components/data-previewer";
 import PreviewWrapper from "../../../../Components/data-previewer/preview-wrapper";
 
 const cardProps = [
