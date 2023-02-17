@@ -14,7 +14,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/"
-            element={<RequireAuth allowedRoles={["dataEntry", "admin"]} />}
+            element={
+              <div style={{ margin: "50px", direction: "ltr" }}>
+                {" "}
+                Navigate to "/staff/data-entry"
+              </div>
+            }
           >
             <Route path="/staff/data-entry/*" element={<DataEntryPages />} />
           </Route>
