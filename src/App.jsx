@@ -12,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/staff/data-entry/*" element={<DataEntryPages />} />
           <Route
             path="/"
             element={
@@ -20,9 +21,7 @@ function App() {
                 Navigate to "/staff/data-entry"
               </div>
             }
-          >
-            <Route path="/staff/data-entry/*" element={<DataEntryPages />} />
-          </Route>
+          ></Route>
         </Routes>
       </AuthProvider>
     </Router>
